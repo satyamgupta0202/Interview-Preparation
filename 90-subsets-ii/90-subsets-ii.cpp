@@ -1,42 +1,26 @@
 class Solution {
 public:
+    vector<vector<int>> result;
     
-    set<vector<int>>s;
-    
-     void solve(vector<int>nums , int indx , int n , vector<int>&path , vector<vector<int>>&ans){
-         
-         if(indx==n){
-             s.insert(path);
-             return ;
-         }
-         
-         if(indx>=n)return ;
-        
-             
-             path.push_back(nums[indx]);
-             solve(nums,indx+1,n,path,ans);
-             path.pop_back();
-             solve(nums,indx+1,n,path,ans);
-             
-         
-         
-         
-     }
-    
-    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        
-            sort(nums.begin(),nums.end());
-            int n  = nums.size();
-            vector<vector<int>>ans;
-            vector<int>path;
-            solve(nums,0,n,path,ans);
-            for(auto it: s){
-                vector<int>k;
-                for(int i=0;i<it.size();i++){
-                    k.push_back(it[i]);
-                }
-                ans.push_back(k);
+    void subs(vector<int> &nums, int curr, vector<int> &res){
+        result.push_back(res);
+        for(int i = curr; i < nums.size(); i++){
+            if(i!=curr && nums[i]==nums[i-1]){
+                continue;
             }
-            return ans;
+            res.push_back(nums[i]);
+            subs(nums, i+1, res);
+            res.pop_back();
+            
+        }
+    }
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        if(nums.size() == 0){
+            return result;
+        }
+        vector<int> res;
+        sort(nums.begin(), nums.end());
+        subs(nums, 0, res);
+        return result;
     }
 };
