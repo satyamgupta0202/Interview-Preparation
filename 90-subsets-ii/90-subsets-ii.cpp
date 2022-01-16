@@ -3,7 +3,12 @@ public:
     vector<vector<int>> result;
     
     void subs(vector<int> &nums, int curr, vector<int> &res){
-        result.push_back(res);
+        
+        //if(curr==nums.size()){
+            result.push_back(res);
+         
+        
+        
         for(int i = curr; i < nums.size(); i++){
             if(i!=curr && nums[i]==nums[i-1]){
                 continue;
