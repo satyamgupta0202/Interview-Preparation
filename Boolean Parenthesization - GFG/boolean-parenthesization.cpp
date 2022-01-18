@@ -7,63 +7,62 @@ using namespace std;
  // } Driver Code Ends
 // User function Template for C++
 
-long long t[201][201][2];
 class Solution{
 public:
-   int count(string s,int i,int j,bool istrue  )
-   {
-       if(i>j)
-       return 0;
-       if(i==j)
-       {
-       if(istrue==1)
-      t[i][j][istrue]= (s[i]=='T');
-       else
-       t[i][j][istrue]= (s[i]=='F');
-       return t[i][j][istrue];
-       }
-       if(t[i][j][istrue]!=-1)
-       {
-           return t[i][j][istrue];
-       }
-       int ans=0;
-       for(int k=i+1;k<=j-1;k=k+2)
-       {
-           int lt=count(s,i,k-1,true);
-           int lf=count(s,i,k-1,false);
-           int rt=count(s,k+1,j,true);
-           int rf=count(s,k+1,j,false);
-           if(s[k]=='&')
-           {
-               if(istrue==true)
-               ans=ans+lt*rt;
-               else
-               ans=ans+lf*rf+lf*rt+lt*rf;
-           }
-           if(s[k]=='^')
-           {
-               if(istrue==true)
-               ans=ans+lt*rf+lf*rt;
-               else
-               ans=ans+lf*rf+lt*rt;
-           }
-           if(s[k]=='|')
-           {
-               if(istrue==true)
-               ans=ans+lt*rt+lf*rt+lt*rf;
-               else
-               ans=ans+lf*rf;
-           }
-           
-       }
-       t[i][j][istrue]=ans%1003;
-       return ans%1003;
-   }
-   int countWays(int N, string S)
-   {
-       memset(t,-1,sizeof(t));
-      return count(S,0,N-1,true);
-   }
+    int dp[1002][1002][2];
+    int solve(string s , int i ,int j , bool istrue){
+        
+        if(i>j)return 0;
+        
+        if(i==j){
+            if(istrue){
+                return dp[i][j][istrue] =  (s[i]=='T');
+            }else{
+                return dp[i][j][istrue] =  (s[i]=='F');
+            }
+        }
+        if(dp[i][j][istrue]!=-1)return dp[i][j][istrue];
+        int ans = 0;
+        for(int k=i+1;k<=j-1;k=k+2){
+            int lt = solve(s,i,k-1,true);
+            int lf = solve(s,i,k-1,false);
+            int rt = solve(s,k+1,j,true);
+            int rf = solve(s,k+1,j,false);
+            
+            if(s[k]=='&'){
+                if(istrue){
+                    ans+= lt*rt;
+                }else{
+                    ans+= lt*rf + lf*rt + lf*rf;
+                }
+            }
+            else if(s[k]=='|'){
+                if(istrue){
+                    ans+= lt*rt + lf*rt + rf*lt;
+                }else{
+                    ans+= lf*rf;
+                }
+            }
+            else if(s[k]=='^'){
+                if(istrue){
+                    ans+= lt*rf + rt*lf;
+                }else{
+                    ans+= lt*rt + rf*lf;
+                }
+            }
+        }
+        
+        return dp[i][j][istrue] =  ans%1003;
+        
+    }
+
+
+    int countWays(int N, string S){
+        // code here
+        memset(dp,-1,sizeof(dp));
+        bool istrue = true;
+        return solve(S,0,N-1,true);
+    }
 };
 
 // { Driver Code Starts.
