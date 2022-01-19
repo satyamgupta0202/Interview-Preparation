@@ -9,23 +9,9 @@ public:
         
         for(int i=n-1;i>=0;i--){
             for(int j=i;j<n;j++){
-                
-                //1
-                if(i==j){
-                    dp[i][j]=true;
-                }
-                //2
-                else if(i+1==j){
+
                     if(s[i]==s[j]){
-                        dp[i][j]=1;
-                    }else{
-                        dp[i][j]=0;
-                    }
-                }
-                
-                else{
-                    if(s[i]==s[j]){
-                        if(dp[i+1][j-1]){
+                        if(j==i ||j-i==1 || dp[i+1][j-1] ){
                             dp[i][j]=true;
                         }else{
                             dp[i][j]=false;
@@ -33,7 +19,7 @@ public:
                     }else{
                         dp[i][j]=false;
                     }
-                }
+    
                if(dp[i][j])cnt++; 
             }
         }
