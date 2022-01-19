@@ -30,7 +30,7 @@ class Solution{
             int a = solve(str,i+1,j);
             int b = solve(str,i,j-1);
             int c = solve(str,i+1,j-1);
-            return dp[i][j] = (mod+a+b-c)%mod ;
+            return dp[i][j] = (a+b-c+mod)%mod ;
         }
         
     }
