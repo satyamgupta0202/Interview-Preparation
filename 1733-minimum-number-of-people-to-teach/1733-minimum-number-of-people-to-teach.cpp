@@ -29,14 +29,13 @@ public:
         }
         
         unordered_map<int,int>ump;
-        for(int i=1;i<=size(languages);i++)
-        {
-            //if current person is not retard let go
-            if(s.count(i) == 0) continue;
- 
-            //else for every language this retard know, increment it's value in map by 1
-            for(auto &ele : languages[i-1])
-                ump[ele]++;
+        for(int i=1;i<=languages.size();i++){
+            if(s.count(i)==0)continue;  //he interacts with his friend
+            
+            for(auto &lang: languages[i-1]){
+                ump[lang]++ ;     //other language then the mutual one's
+            }
+            
         }
         
         int ans = 0;
