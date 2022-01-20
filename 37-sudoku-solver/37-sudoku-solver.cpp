@@ -3,7 +3,7 @@ public:
     
 bool solve(vector<vector<char>>& board ,  vector<vector<int>>&row ,  vector<vector<int>>&col ,          vector<vector<int>>&box ,int r , int c ){
         
-        if(r==9 && c == 0)return true;
+    if(r==9 && c == 0)return true;
     
         int nr = r , nc = c+1;
     
