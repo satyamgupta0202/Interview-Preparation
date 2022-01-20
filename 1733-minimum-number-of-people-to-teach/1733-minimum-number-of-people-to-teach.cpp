@@ -1,51 +1,52 @@
 class Solution {
- 
-    bool canSpeakCommon(vector<int> &a,vector<int> &b)
-    {
-       
-        for(auto &val : a)
-        {
-            for(auto &ele : b) 
-                if(val == ele) return true;
+public:
+    
+    bool check(vector<int>&a , vector<int>&b){
+          for(auto &l1 : a) {
+            for(auto &l2 : b) 
+                if(l1 == l2) return true;
         }
  
         return false;
     }
-public:
+    
     int minimumTeachings(int n, vector<vector<int>>& languages, vector<vector<int>>& friendships) {
- 
-
-        unordered_set<int> st;
- 
-        for(auto &fri : friendships)
-        {
+        
+        int f = friendships.size();
+        
+        unordered_set<int>s;
+        
+        for(int i=0;i<f;i++){
             
-            if(!canSpeakCommon(languages[fri[0]-1] , languages[fri[1]-1]))
-            {
-               
-                st.insert(fri[0]);
-                st.insert(fri[1]);
-            }
+            int guy1 = friendships[i][0];
+            int guy2 = friendships[i][1];
+            
+           //             Dont share common language 
+            if(!check(languages[guy1-1] , languages[guy2-1])){
+                s.insert(guy1);
+                s.insert(guy2);
+            }    
         }
- 
-     
-        unordered_map<int,int> mp;
- 
+        
+        unordered_map<int,int>ump;
         for(int i=1;i<=size(languages);i++)
         {
-         
-            if(st.count(i) == 0) continue;
+            //if current person is not retard let go
+            if(s.count(i) == 0) continue;
  
-            
+            //else for every language this retard know, increment it's value in map by 1
             for(auto &ele : languages[i-1])
-                mp[ele]++;
+                ump[ele]++;
         }
- 
-        int res = 0;
- 
-        for(auto &[key,value] : mp)
-            res = max(res,value);
- 
-        return size(st) - res;
+        
+        int ans = 0;
+        for(auto it: ump){
+            ans = max(ans , it.second);
+        }
+        
+        return s.size() - ans;
+        
+        
+        
     }
 };
