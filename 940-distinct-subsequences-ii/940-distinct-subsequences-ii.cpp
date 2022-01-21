@@ -16,11 +16,11 @@ long  solve(string &s) {
 
     for(int i=1;i<=n;i++){
 
-        dp[i] = (dp[i-1]* (2%mod))%mod;
+        dp[i] = (dp[i-1]*2)%mod;
         char k = s[i-1];
         if(mp[k]!=-1){
            ok++;
-            dp[i] = (dp[i]%mod -  dp[mp[k]-1]%mod +mod)%mod;
+            dp[i] = (dp[i] -  dp[mp[k]-1] +mod)%mod;
 
         }
 
