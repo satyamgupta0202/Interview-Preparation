@@ -6,8 +6,7 @@ public:
         bool dp[n][n];
         memset(dp,false,sizeof(dp));
         int ans = 0;
-        int l=-1;
-        int h = -1;
+        
         string k = "";
         
         for(int i=n-1;i>=0;i--){
