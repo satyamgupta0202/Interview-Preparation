@@ -36,7 +36,7 @@ class Solution {
 		int LongestRepeatingSubsequence(string str){
 		    // Code here
 		    string s1 = str;
-		    reverse(str.begin(),str.end());
+		   // reverse(str.begin(),str.end());
 		    string s2 = str;
 		    int k = LCS(s1,s1);
 		    return k;
