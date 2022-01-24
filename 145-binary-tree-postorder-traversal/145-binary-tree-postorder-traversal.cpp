@@ -39,7 +39,7 @@ public:
     }
 };
 
-
+// Ierative approach
 // vector<int>ans;
 //     void postorder(TreeNode* root){
 //         if(root==NULL){
