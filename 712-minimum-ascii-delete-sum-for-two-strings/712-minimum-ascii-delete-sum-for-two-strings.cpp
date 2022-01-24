@@ -18,10 +18,12 @@ public:
         if(s1[i] == s2[j]){
             return solve(s1,s2,n1,n2,i+1,j+1);
         }
-        
-            int a1 = int(s1[i]) + solve(s1,s2,n1,n2,i+1,j);
+        else{
+             int a1 = int(s1[i]) + solve(s1,s2,n1,n2,i+1,j);
             int a2 = int(s2[j]) + solve(s1,s2,n1,n2,i,j+1); 
-            return dp[i][j]= min(a1,a2);   
+            return dp[i][j]= min(a1,a2);    
+        }
+          
     }
     
     
