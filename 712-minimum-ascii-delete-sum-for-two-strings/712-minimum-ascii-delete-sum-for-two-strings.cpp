@@ -1,7 +1,6 @@
 class Solution {
 public:
-    int dp[2001][2001];
-    
+ 
     int solve(string s1,string s2){
         
     int n1 = s1.size() , n2 = s2.size();
