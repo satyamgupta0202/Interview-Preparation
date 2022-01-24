@@ -1,56 +1,54 @@
 class Solution {
 public:
     
-    int kadanes(vector<int>& arr, int k){
-        int mod=(int)(1e9+7);
-
-        long csum=0, msum=0;
-        int i=0;
-
-        while(k>0){
-            while(i<arr.size()){
-                csum += arr[i];
-
-                if(csum<0) csum=0;
-                msum= max(csum, msum);
-                i++;
+    long mod = (int)1e9+7;
+    int kadane(vector<int>arr , int k){
+        
+        int ans = 0 , curr=0;
+        
+        for(int i=1;i<=k;i++){
+            
+         for(int i=0;i<arr.size();i++){
+            
+            if(curr<0){
+                curr=arr[i];
+                ans = max(ans ,curr);
             }
-            i=0;
-            k--;
+            else{
+                curr+=arr[i];
+                ans = max(ans,curr);
+            }    
         }
-
-        return (int)(msum % mod);
+                
+        }
+        return (int)ans%mod;  
     }
     
     
     
     int kConcatenationMaxSum(vector<int>& arr, int k) {
         
-         int ans_for_2=0;
-        long mod = (int)(1e9+7);
-
-        long arr_sum = 0;
-        for(int& e:arr)  arr_sum+=e;
+        int n= arr.size();
+        long sum=0;
+        for(auto el: arr){
+            sum+=el;
+        }
         
-        for(int i=1; i<=2; i++){
-            int sum = kadanes(arr,i);
-
-            if(k==i){
-                return sum;
-            }
-
-            if(i==2){
-                ans_for_2=sum;
-            }
+       int s1 = kadane(arr,1);
+        if(k==1){
+            return (int)s1%mod;
         }
-
-        if(arr_sum < 0){
-            return (int)(ans_for_2 % mod);
+        
+        int s2 = kadane(arr,2);
+        
+        if(sum<0){
+            return (int)(s2%mod);
         }
-
-        int ans = (int)(ans_for_2 + ((k-2) * (arr_sum) % mod));
-
+        
+       int ans = (int)(s2 + ((k-2) * (sum) % mod));
+        
         return max(ans,0);
+        
         
         
     }
