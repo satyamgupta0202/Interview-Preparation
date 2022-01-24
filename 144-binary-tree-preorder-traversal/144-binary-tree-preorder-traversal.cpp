@@ -11,21 +11,67 @@
  */
 class Solution {
 public:
-    vector<int>ans;
-    
-    void preorder(TreeNode* root){
-        if(root==NULL){
-            return;
-        }
-        ans.push_back(root->val);
-        preorder(root->left);
-        preorder(root->right);
-    }
-    
     vector<int> preorderTraversal(TreeNode* root) {
-       
-        preorder(root);
         
+        vector<int>ans;
+        stack<TreeNode*>st;
+        st.push(root);
+        
+        if(root == NULL)return ans;
+        
+        while(!st.empty()){
+            
+            auto it = st.top(); st.pop();
+            
+            ans.push_back(it->val);
+            
+            if(it->right){
+                st.push(it->right);
+            }   
+            
+            if(it->left){
+                st.push(it->left);
+            }
+                
+        }
         return ans;
+        
+        
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Recursive
+// class Solution {
+// public:
+//     vector<int>ans;
+    
+//     void preorder(TreeNode* root){
+//         if(root==NULL){
+//             return;
+//         }
+//         ans.push_back(root->val);
+//         preorder(root->left);
+//         preorder(root->right);
+//     }
+    
+//     vector<int> preorderTraversal(TreeNode* root) {
+       
+//         preorder(root);
+        
+//         return ans;
+//     }
+//};
