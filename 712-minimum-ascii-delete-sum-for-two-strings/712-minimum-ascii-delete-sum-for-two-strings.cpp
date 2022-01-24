@@ -2,34 +2,36 @@ class Solution {
 public:
     int dp[2001][2001];
     
-    int solve(string &s1,string &s2 , int n1 ,int n2 , int i, int j){
+    int solve(string s1,string s2){
         
-        if(i==n1 || j==n2){
-            int sum = 0;
-            for(int x=i;x<n1;x++)sum+=int(s1[x]);
-            
-            for(int x=j;x<n2;x++)sum+=int(s2[x]);
-            
-            return sum;
+    int n1 = s1.size() , n2 = s2.size();
+    int dp[n1+1][n2+1];
+    memset(dp,0,sizeof(dp));
+
+    for(int i=1;i<=n1;i++){
+        for(int j=1;j<=n2;j++){
+
+            if(s1[i-1]==s2[j-1]){
+                dp[i][j] = dp[i-1][j-1] + int(s1[i-1]);
+            }
+            else{
+                dp[i][j] = max(dp[i-1][j] , dp[i][j-1]);
+            }
+
         }
-        
-        if(dp[i][j]!=-1)return dp[i][j];
-        
-        if(s1[i] == s2[j]){
-            return solve(s1,s2,n1,n2,i+1,j+1);
-        }
-        else{
-             int a1 = int(s1[i]) + solve(s1,s2,n1,n2,i+1,j);
-            int a2 = int(s2[j]) + solve(s1,s2,n1,n2,i,j+1); 
-            return dp[i][j]= min(a1,a2);    
-        }
+    }
+   
+   int sum = 0;
+   for(int i=0;i<s1.size();i++)sum+=int(s1[i]);
+   for(int i=0;i<s2.size();i++)sum+=int(s2[i]);
+   return sum - 2*dp[n1][n2];
           
     }
     
     
     int minimumDeleteSum(string s1, string s2) {
-        memset(dp,-1,sizeof(dp));
-        int n1=s1.size(),n2=s2.size();
-        return solve(s1,s2,n1,n2,0,0);        
+      
+       
+        return solve(s1,s2);        
     }
 };
