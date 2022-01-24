@@ -19,7 +19,6 @@ vector<int>ans;
             return;
         }
         
-        
         postorder(root->left);
         postorder(root->right);
         ans.push_back(root->val);
