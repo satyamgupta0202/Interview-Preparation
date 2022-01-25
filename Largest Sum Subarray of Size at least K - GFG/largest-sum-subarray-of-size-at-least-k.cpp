@@ -24,12 +24,9 @@ int main() {
 }
 // } Driver Code Ends
 
-
-
-
 void solve(long long int a[] , long long int n , long long int k,int dp[]){
     dp[0]=0;
-    long long int curr = a[0] , ans = a[0] , p=0,q=0;
+    long long int curr = a[0] , ans = a[0];
     dp[0+1]=a[0];
     for(int i=1;i<n;i++){
         
@@ -41,13 +38,7 @@ void solve(long long int a[] , long long int n , long long int k,int dp[]){
             }
         dp[i+1]=curr;    
     }
-//   cout<<"lol"<<endl;
-//     for(int i=0;i<=n;i++){
-//         cout<<dp[i]<<" ";
-//     }
-//     cout<<"lol"<<endl;
 }
-
 long long int maxSumWithK(long long int a[], long long int n, long long int k) 
 {
     int dp[n+1];
@@ -56,17 +47,13 @@ long long int maxSumWithK(long long int a[], long long int n, long long int k)
      int i=0,j=0;
      int sum=0;
      while(j<n){
-         
          while(j-i+1<k){
              sum+=a[j];
              j++;
          }
-         
          if(j-i+1==k){
-             
              sum = sum+a[j];
              ans = max(ans , max(sum+dp[i],sum));
-           //  cout<<"ans"<<" "<<i<<" "<<ans<<endl;
              sum = sum - a[i];
              i++;
              j++;
@@ -74,24 +61,5 @@ long long int maxSumWithK(long long int a[], long long int n, long long int k)
      }
      
      return ans;
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
+    
 }
