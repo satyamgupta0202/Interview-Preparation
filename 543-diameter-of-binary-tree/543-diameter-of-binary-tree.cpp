@@ -16,17 +16,13 @@ public:
     
     int height(TreeNode* root) {
         if(root==NULL)return 0;
-        
         int lh = height(root->left);
-        int rh = height(root->right);
-        
-        ans = max(ans,lh+rh+1);
-        return 1+max(lh,rh);
-        
+        int rh = height(root->right); 
+        ans = max(ans,lh+rh+1);   // maximum diameter kae liye
+        return 1+max(lh,rh);     //maximum height kae liye
     }
     
     int diameterOfBinaryTree(TreeNode* root) {
-        
         if(!root)return 0;
         height(root);
         return ans-1;
