@@ -12,7 +12,7 @@
 class Solution {
 public:
     vector<int> rightSideView(TreeNode* root) {
-        
+        //left and right view is basically level order traversal
         map<int,int>mp;
         vector<int>ans;
         if(!root)return ans;
