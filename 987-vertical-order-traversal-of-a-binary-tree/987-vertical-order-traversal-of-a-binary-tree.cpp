@@ -9,6 +9,10 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+// in vertical order traversal : map<int, map<int,multiset<int>>>
+// end for(auto it: mp) --> it.second--> 
+
 class Solution {
 public:
     vector<vector<int>> verticalTraversal(TreeNode* root) {
@@ -45,7 +49,7 @@ public:
             vector<int>v;
             
             for(auto lol : it.second){
-               v.insert(v.end(),lol.second.begin(),lol.second.end());
+               v.insert(v.end(),lol.second.begin(),lol.second.end());  //lol.second-->set
             }
             ans.push_back(v);
             
