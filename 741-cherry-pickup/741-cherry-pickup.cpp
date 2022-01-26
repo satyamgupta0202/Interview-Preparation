@@ -13,22 +13,24 @@ public:
         if(i2==grid.size()-1 && j2==grid[0].size()-1){
             return grid[i2][j2];
         }
+        
         if(dp[i1][j1][i2][j2]!=-1)return dp[i1][j1][i2][j2];
         
+        
         int c=0;
+          
+        int op1 = solve(grid,i1,j1+1,i2,j2+1);
+        int op2 = solve(grid,i1+1,j1,i2+1,j2);
+        int op3 = solve(grid,i1+1,j1,i2,j2+1);
+        int op4 = solve(grid,i1,j1+1,i2+1,j2);
+        
+        c=max( max(op1,op2) , max(op3,op4) ); 
         if(i1==i2 && j1==j2){
             c+=grid[i1][j1];
         }
         else{
             c+= grid[i1][j1]+grid[i2][j2];
         }
-         
-        int op1 = solve(grid,i1,j1+1,i2,j2+1);
-        int op2 = solve(grid,i1+1,j1,i2+1,j2);
-        int op3 = solve(grid,i1+1,j1,i2,j2+1);
-        int op4 = solve(grid,i1,j1+1,i2+1,j2);
-        
-        c+=max( max(op1,op2) , max(op3,op4) );   
         dp[i1][j1][i2][j2]=c;
         return c;
     }
