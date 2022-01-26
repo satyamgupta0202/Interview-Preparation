@@ -10,9 +10,9 @@ public:
             return grid[i1][j1];
         }
         
-//         if(i2==grid.size()-1 && j2==grid[0].size()-1){
-//             return grid[i2][j2];
-//         }
+        if(i2==grid.size()-1 && j2==grid[0].size()-1){
+            return grid[i2][j2];
+        }
         if(dp[i1][j1][i2][j2]!=-1)return dp[i1][j1][i2][j2];
         
         int c=0;
