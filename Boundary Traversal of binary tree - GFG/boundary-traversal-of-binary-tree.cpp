@@ -134,7 +134,6 @@ public:
         } 
         if(root->left)leafPart(root->left,ans);
         if(root->right)leafPart(root->right,ans);
-         
     }
   
     //right Part 
