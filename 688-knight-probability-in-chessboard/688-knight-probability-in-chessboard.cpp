@@ -2,8 +2,7 @@ class Solution {
 public:
     double out=0;
     double in= 0;
-    
-   
+ 
     double solve(int n , int k , int i,int j , int m, vector<vector<vector<double>>>&dp){
         
         if(i<0 || j<0 || i>=n || j>=n ){
