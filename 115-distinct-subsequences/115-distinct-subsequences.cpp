@@ -1,41 +1,30 @@
 class Solution {
 public:
-    int ans=0;
-    int dp[1005][1005];
-    int solve(string s , string t , int i , int j){
-        
-        if(i==t.size()){
-            return 1;
-        }
-        
-        if(j==s.size()){
-            return 0;
-        }
-        
-        if(dp[i][j]!=-1)return dp[i][j];
-        
-        if(t[i]!=s[j]){
-            if(dp[i][j]!=-1)return dp[i][j];
-            return dp[i][j] = solve(s,t,i,j+1);
-        }
-        
-        if(t[i]==s[j]){
-            
-            int l , r;
-            if(dp[i+1][j+1]!=-1)l = dp[i+1][j+1];
-            else l = solve(s,t,i+1,j+1);
-            if(dp[i][j+1]!=-1)r=dp[i][j+1];
-            else r = solve(s,t,i,j+1);
-            return dp[i][j] = l+r;
-        }
-        return 0;
-    }
-    
-    
     int numDistinct(string s, string t) {
         
-         memset(dp,-1,sizeof(dp));
-         return solve(s,t,0,0);
-  
+        // if(t.size() == 0)return 1;
+        // if(s.size() == 0)return 0;
+        int n = s.size(),m=t.size();
+       unsigned long dp[n+1][m+1];
+        
+        for(int i=0;i<=m;i++){
+            dp[0][i]=0;
+        }
+        
+        for(int i=0;i<=n;i++){
+            dp[i][0]=1;
+        }
+        
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                
+                if(s[i-1]!=t[j-1]){
+                    dp[i][j]=dp[i-1][j];
+                }else{
+                    dp[i][j] = dp[i-1][j-1] + dp[i-1][j];
+                }
+            }
+        }
+        return dp[n][m]; 
     }
 };
