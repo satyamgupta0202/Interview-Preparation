@@ -15,11 +15,18 @@ public:
         if(dp[i][j]!=-1)return dp[i][j];
         
         if(t[i]!=s[j]){
+            if(dp[i][j]!=-1)return dp[i][j];
             return dp[i][j] = solve(s,t,i,j+1);
         }
         
         if(t[i]==s[j]){
-            return dp[i][j] =  solve(s,t,i+1,j+1) + solve(s,t,i,j+1);
+            
+            int l , r;
+            if(dp[i+1][j+1]!=-1)l = dp[i+1][j+1];
+            else l = solve(s,t,i+1,j+1);
+            if(dp[i][j+1]!=-1)r=dp[i][j+1];
+            else r = solve(s,t,i,j+1);
+            return dp[i][j] = l+r;
         }
         return 0;
     }
