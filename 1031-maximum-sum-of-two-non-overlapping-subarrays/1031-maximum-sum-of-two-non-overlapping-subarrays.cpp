@@ -52,44 +52,7 @@ public:
     }
     
     int maxSumTwoNoOverlap(vector<int>& a, int f, int s) {
-     
-        //Case 2.
-        
-//         sum=0;
-        
-//         for(int i=0;i<n;i++)
-//         {
-//             if(i<s){
-//                 sum+=a[i];
-//                 dp1[i]=sum;
-//             }
-//             else
-//             {
-//                 sum+=a[i]-a[i-s];
-//                 dp1[i]=max(sum,dp1[i-1]);
-//             }
-//         }
-//         sum=0;
-        
-//         for(int i=n-1;i>=0;i--)
-//         {
-//             if(i+f>=n)
-//             {
-//                 sum+=a[i];
-//                 dp2[i]=sum;
-//             }
-//             else
-//             {
-//                 sum+=a[i]-a[i+f];
-//                 dp2[i]=max(sum,dp2[i+1]);
-//             }
-//         }
-        
-        
-//         for(int i=s-1;i<n-f;i++)
-//         {
-//             ans=max(ans,dp1[i]+dp2[i+1]);
-//         }
+    
         int a1 = solve(a,f,s);
         int a2 = solve(a,s,f);
         return max(a1,a2);
