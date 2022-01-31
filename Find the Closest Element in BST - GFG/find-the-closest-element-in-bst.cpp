@@ -32,7 +32,7 @@ class Solution
        if(root==NULL)return ans;
        
         if(root->data==K){
-           ans=0;
+          
            return 0;
         }
         
