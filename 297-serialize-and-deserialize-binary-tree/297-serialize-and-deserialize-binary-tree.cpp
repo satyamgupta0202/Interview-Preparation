@@ -13,26 +13,29 @@ public:
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
         
+        queue<TreeNode*>q;
         string s = "";
         if(root==NULL)return s;
-        queue<TreeNode*>q;
         q.push(root);
-        
         
         while(!q.empty()){
             
-            auto node = q.front();
-            q.pop();
+            auto curr = q.front();q.pop();
             
-            if(node == NULL)s.append("#,");
-            
-            else s.append(to_string(node->val)+',');
-            
-            if(node!= NULL){
-                q.push(node->left);
-                q.push(node->right);
-            }     
+            if(curr==NULL){
+                s = s+"#,";
+            }
+            else{
+                s+=to_string(curr->val)+",";
+            }  
+            if(curr!=NULL){
+                q.push(curr->left);
+                q.push(curr->right);
+            }
         }
+        
+        
+        
         return s;
     }
 
