@@ -32,10 +32,7 @@ public:
                 q.push(curr->left);
                 q.push(curr->right);
             }
-        }
-        
-        
-        
+        }     
         return s;
     }
 
