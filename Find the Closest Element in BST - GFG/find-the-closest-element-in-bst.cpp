@@ -44,7 +44,7 @@ class Solution
             minDiff(root->left,K);
         }
         
-        return ans;
+      
 
     }
 };
