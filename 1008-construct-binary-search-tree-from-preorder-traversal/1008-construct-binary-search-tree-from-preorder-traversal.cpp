@@ -11,6 +11,30 @@
  */
 class Solution {
 public:
+   
+    TreeNode* Build(vector<int>&preorder,int &i , int bound){
+        
+        if(i>=preorder.size() || preorder[i]>bound)return NULL;
+        
+        TreeNode *root = new TreeNode(preorder[i++]);
+        root->left = Build(preorder,i,root->val);
+        root->right = Build(preorder,i,bound);
+        return root;    
+    }
+    
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+       int i=0;
+        TreeNode* root = Build(preorder,i,INT_MAX);
+        return root;
+    }
+};
+
+/**
+                             Using Extra Space 
+        
+        
+class Solution {
+public:
     map<int,int>mp;
     
     TreeNode*build(vector<int>&preorder,int preStart,int preEnd , vector<int>&inorder,int inStart,int inEnd){
@@ -38,3 +62,5 @@ public:
         
     }
 };
+
+**/
