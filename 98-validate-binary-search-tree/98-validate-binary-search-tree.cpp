@@ -44,25 +44,10 @@ bool check(TreeNode* root , long mi , long ma){
     if(root==NULL ){
         return true;
     }
-    
-    
     if(root->val>=ma || root->val<=mi)return false;
-    
-    // if(root->left){
-    //     return check(root->left,mi,root->val);
-    // }
-    // if(root->right){
-    //    return check(root->right,root->val,ma);
-    // }
-    
     return (check(root->right,root->val,ma) && check(root->left,mi,root->val));
    
 }
-
-
-
-
-
 
 class Solution {
 public:
