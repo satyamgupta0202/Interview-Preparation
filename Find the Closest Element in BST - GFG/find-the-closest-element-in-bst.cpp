@@ -32,7 +32,6 @@ class Solution
        if(root==NULL)return ans;
        
         if(root->data==K){
-          
            return 0;
         }
         
@@ -43,9 +42,6 @@ class Solution
             ans=min(ans,root->data-K);
             minDiff(root->left,K);
         }
-        
-      
-
     }
 };
 
