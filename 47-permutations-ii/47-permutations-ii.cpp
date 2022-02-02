@@ -1,33 +1,21 @@
+
 class Solution {
 public:
-    vector<vector<int>>ans;
-    set<vector<int>>s;
-    
-    void solve(vector<int>nums,int start,int end,vector<int>&path){
-        
-        if(start>=end){
-            s.insert(nums);
+    void recursion(vector<int> num, int i, int j, vector<vector<int> > &res) {
+        if (i == j-1) {
+            res.push_back(num);
             return;
         }
-        for(int i=start;i<=end;i++){
-            swap(nums[i],nums[start]);
-            solve(nums,start+1,end,path);
-            swap(nums[i],nums[start]);
+        for (int k = i; k < j; k++) {
+            if (i != k && num[i] == num[k]) continue;
+            swap(num[i], num[k]);
+            recursion(num, i+1, j, res);
         }
-        
     }
-    
-    vector<vector<int>> permuteUnique(vector<int>& nums) {
-        
-        sort(nums.begin(),nums.end());
-        int n= nums.size();
-        vector<int>path;
-        solve(nums,0,n-1,path);
-        
-        for(auto it: s){
-            ans.push_back(it);
-        }
-        return ans;
-        
+    vector<vector<int> > permuteUnique(vector<int> &num) {
+        sort(num.begin(), num.end());
+        vector<vector<int> >res;
+        recursion(num, 0, num.size(), res);
+        return res;
     }
 };
