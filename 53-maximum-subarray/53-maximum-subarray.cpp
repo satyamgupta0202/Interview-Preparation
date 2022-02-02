@@ -17,9 +17,7 @@ public:
             else{
                 curr = curr+nums[i];
                 ans = max(ans,curr);
-            }
-            
-            
+            }  
         }
         return ans;
         
