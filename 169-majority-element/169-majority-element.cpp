@@ -23,7 +23,8 @@ public:
                   cnt=0;
             } 
         }
-        
+        if(ans>=  floor(n/2))
         return res;
+        return 0;
     }
 };
