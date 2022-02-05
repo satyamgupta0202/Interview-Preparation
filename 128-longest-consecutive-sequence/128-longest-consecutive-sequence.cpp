@@ -4,7 +4,7 @@ public:
         
       int ans = 0;
       int cnt = 0;
-        set<int>s(nums.begin() , nums.end());
+      unordered_set<int>s(nums.begin() , nums.end());
         
      for(auto n: nums){
          
