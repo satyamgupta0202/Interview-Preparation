@@ -2,6 +2,38 @@ class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
         
+      int ans = 0;
+      int cnt = 0;
+        set<int>s(nums.begin() , nums.end());
+        
+     for(auto n: nums){
+         
+          if(s.count(n-1)==0){
+              
+              cnt = 0;
+             
+              while(s.count(n)!=0){
+                  n++;
+                  cnt++;
+              }
+              ans = max(ans,cnt);
+              
+          }
+         
+     }
+        return ans;
+        
+        
+    }
+};
+
+/**
+
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        
         set<int>s(nums.begin(),nums.end());
         
         int ans = 0,cnt=0;
@@ -34,3 +66,5 @@ public:
         
     }
 };
+
+**/
