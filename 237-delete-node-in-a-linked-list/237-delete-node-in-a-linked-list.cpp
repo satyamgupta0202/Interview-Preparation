@@ -9,6 +9,15 @@
 class Solution {
 public:
     void deleteNode(ListNode* node) {
+        *node = *node->next;
+
+    }
+};
+
+/** 
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
         
         ListNode* temp = node->next;
         
@@ -22,3 +31,5 @@ public:
         node->next=NULL;
     }
 };
+
+**/
