@@ -11,6 +11,37 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
+      
+        if(head==NULL)return NULL;
+        ListNode* prev = head;
+        ListNode* curr = prev->next;
+        if(curr==NULL)return prev;
+        ListNode* next = curr->next;
+        prev->next=NULL;
+        while(next!=NULL){
+           //  prev->next=NULL;
+              curr->next = prev;
+              prev = curr;
+              curr=next;
+            next = next->next;
+        }
+        //prev->next=NULL;
+        curr->next=prev;
+        return curr;
+       
+    }
+};
+
+
+
+
+
+
+   /*** Extra Space***
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
         
         ListNode* temp = head;
         vector<int>v;
@@ -18,9 +49,7 @@ public:
             v.push_back(temp->val);
             temp=temp->next;
         }
-        
         reverse(v.begin(),v.end());
-        
         temp=head;
         int k=0;
          while(temp!=NULL){
@@ -29,7 +58,7 @@ public:
              temp=temp->next;
             
         }
-        
         return head;
     }
 };
+**/
