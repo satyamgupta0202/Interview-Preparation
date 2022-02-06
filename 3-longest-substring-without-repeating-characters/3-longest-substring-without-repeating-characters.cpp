@@ -12,9 +12,9 @@ public:
             
             mp[s[j]]++;
             
-            if(mp[s[j]]==1){
-                ans = max(ans, j-i+1);
-            }
+            // if(mp[s[j]]==1){
+            //     ans = max(ans, j-i+1);
+            // }
             
             while(i<j && mp[s[j]]>1){
                 mp[s[i]]--;
@@ -25,10 +25,8 @@ public:
                 ans = max(ans, j-i+1);
             }
             
-            j++;
-            
+            j++;    
         }
-        return ans;
-        
+        return ans;  
     }
 };
