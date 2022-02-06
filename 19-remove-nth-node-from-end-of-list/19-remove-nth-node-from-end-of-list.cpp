@@ -18,7 +18,7 @@ public:
             n++;
             temp=temp->next;
         }
-      //  if(n==1)return NULL;
+     
         int target = n-k+1;
         int cnt=1;
         temp=head;
@@ -28,8 +28,11 @@ public:
             temp=temp->next;
             cnt++;
         }
-       if(cnt==1)return head->next;
-        prev->next=temp->next;
+        
+        if(cnt==1)return head->next;
+        
+       prev->next=temp->next;
+    
         
         
         return head;
