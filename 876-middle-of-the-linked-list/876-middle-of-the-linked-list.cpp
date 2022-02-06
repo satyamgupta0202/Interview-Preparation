@@ -1,4 +1,3 @@
-
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -9,7 +8,30 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        
+        while(fast->next){
+            slow = slow->next;
+            if(fast->next)
+            fast = fast->next;
+            if(fast->next)
+            fast = fast->next;
+        }
+        return slow;
+    }
+};
 
+
+
+
+
+
+
+/**    using Extra Space
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
@@ -24,3 +46,4 @@ public:
         return (v[cnt/2]);
     }
 };
+**/
