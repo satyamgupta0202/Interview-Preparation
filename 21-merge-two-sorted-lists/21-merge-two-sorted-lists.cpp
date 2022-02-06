@@ -8,21 +8,48 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
+        ListNode dummy(INT_MIN);
+        ListNode *tail = &dummy;
         
-        if(list1==NULL)return list2;
-        if(list2==NULL)return list1;
-         ListNode* head = list1->val <= list2->val? list1 : list2; ;
-        
-        if(list1->val <= list2->val)head->next = mergeTwoLists(list1->next,list2);
-        if(list1->val > list2->val)head->next = mergeTwoLists(list1,list2->next);
-        
-        return head;
-        
+        while (l1 && l2) {
+            if (l1->val < l2->val) {
+                tail->next = l1;
+                l1 = l1->next;
+            } else {
+                tail->next = l2;
+                l2 = l2->next;
+            }
+            tail = tail->next;
+        }
+
+        tail->next = l1 ? l1 : l2;
+        return dummy.next;
     }
 };
+
+
+
+
+
+// class Solution {
+// public:
+//     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        
+//         if(list1==NULL)return list2;
+//         if(list2==NULL)return list1;
+//          ListNode* head = list1->val <= list2->val? list1 : list2; ;
+        
+//         if(list1->val <= list2->val)head->next = mergeTwoLists(list1->next,list2);
+//         if(list1->val > list2->val)head->next = mergeTwoLists(list1,list2->next);
+        
+//         return head;
+        
+//     }
+// };
 
 
 /**
