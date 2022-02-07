@@ -10,6 +10,58 @@
  */
 class Solution {
 public:
+    bool isPalindrome(ListNode* head) {
+        
+        if(head==NULL)return false;
+        
+        ListNode* slow = head;
+        ListNode* fast = head;
+        
+        while(fast && fast->next){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        
+        // cout<<slow->val;
+        // cout<<endl;
+        // cout<<fast->val;
+        
+       
+        ListNode* prev = NULL ;
+        ListNode* curr = slow;
+        ListNode *next;
+        
+        while(curr){
+            
+            next = curr->next;    
+            curr->next = prev;
+            prev = curr;
+            curr=next;
+        
+        }
+        
+        
+        //prev , lol
+       
+        while(prev && head){
+            
+            if(prev->val != head->val)return false;
+            
+            prev = prev->next;
+            head = head->next;
+        }
+        return true;
+    }
+};
+
+
+
+
+
+
+/**     Naive Aproach
+class Solution {
+public:
     
     bool check(vector<int>&v){
         int n = v.size();
@@ -35,3 +87,4 @@ public:
         return check(v);
     }
 };
+**/
