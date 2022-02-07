@@ -10,6 +10,36 @@ class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *l1, ListNode *l2) {
         
+        ListNode *a = l1 , *b = l2;
+        
+        while(a!=b){
+            
+            if(a==NULL){
+                a=l2;
+            }else{
+                a=a->next;
+            }
+            
+            if(b==NULL){
+                b = l1;
+            }else{
+                b = b->next;
+            }
+            
+        }
+        
+        return a;
+        
+        
+        
+    }
+};
+
+/**
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *l1, ListNode *l2) {
+        
         set<ListNode*>s;
         ListNode* temp = l1;
         while(temp!=NULL){
@@ -25,3 +55,4 @@ public:
         return NULL;
     }
 };
+**/
