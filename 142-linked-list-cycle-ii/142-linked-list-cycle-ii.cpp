@@ -24,6 +24,7 @@ public:
             if(slow==fast)break;  
         }  
         
+        if(!slow || !fast)return NULL;
        
         if(slow && fast && slow==fast){
         fast = head;
