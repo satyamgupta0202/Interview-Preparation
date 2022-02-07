@@ -15,18 +15,16 @@ public:
         int n = 0;
         ListNode* temp = head;
         
-        while(temp){
-            n++;
-            temp = temp->next;
-        }
+        // while(temp){
+        //     n++;
+        //     temp = temp->next;
+        // }
         
        int ans = 0;
        temp = head;
         while(temp){
-            if(temp->val ==1){
-                ans+= pow(2,n-1);
-            }
-            n--;
+           ans = ans*2;
+            ans+= temp->val;
             temp=temp->next;
         }
         return ans;
