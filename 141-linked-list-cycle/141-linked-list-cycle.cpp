@@ -10,6 +10,24 @@ class Solution {
 public:
     bool hasCycle(ListNode *head) {
         
+        //rabbit tortoise method
+        if(head==NULL)return false;
+       ListNode* slow = head;
+       ListNode* fast = head->next;
+    
+        while(slow && fast && slow != fast){
+            slow = slow->next;
+            if(fast->next==NULL)return false;
+            fast = fast->next->next;
+        }
+        
+        if(slow!=NULL && slow==fast)return true;
+        return false;
+        
+    }
+};
+
+/**
 //      Naive Approach
         map<ListNode* , bool >mp;
         ListNode* temp = head;
@@ -21,3 +39,4 @@ public:
         return false;
     }
 };
+**/
