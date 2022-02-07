@@ -11,13 +11,16 @@ public:
     bool hasCycle(ListNode *head) {
         
         //rabbit tortoise method
-        if(head==NULL)return false;
+        
+       if(head==NULL)return false;     //base case to be remenbered
+        
        ListNode* slow = head;
        ListNode* fast = head->next;
+        
     
         while(slow && fast && slow != fast){
             slow = slow->next;
-            if(fast->next==NULL)return false;
+            if(fast->next==NULL)return false;    //note this too
             fast = fast->next->next;
         }
         
