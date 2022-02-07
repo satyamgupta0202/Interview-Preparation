@@ -127,8 +127,7 @@ Node* merge(Node* l1 , Node* l2)
 Node *flatten(Node *root)
 {
     if(!root || root->next == NULL)return root;
-    Node* temp = root;
-    Node* ans = root;
+   
     Node* p = root;
     Node* q = root;
     
