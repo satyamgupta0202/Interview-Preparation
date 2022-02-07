@@ -26,18 +26,14 @@ public:
         
         if(!slow || !fast)return NULL;
        
-        if(slow && fast && slow==fast){
+      
         fast = head;
-        while(slow!=fast){
+        while(slow && fast && slow!=fast){
             slow=slow->next;
             fast=fast->next;
         }
         return slow;
-        }
         
-        
-        
-        return NULL;
     }
 };
 
