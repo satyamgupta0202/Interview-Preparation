@@ -110,36 +110,88 @@ struct Node{
 
 /*  Function which returns the  root of 
     the flattened linked list. */
+
+Node* merge(Node* l1 , Node* l2)    
+    {
+        if(l1==NULL)return l2;
+        if(l2==NULL)return l1;
+        
+        Node *head = l1->data<=l2->data?l1:l2;
+        
+        if(l1->data <= l2->data) head->bottom = merge(l1->bottom,l2);
+        else head->bottom = merge(l1,l2->bottom);
+        
+        return head;
+    }
+    
 Node *flatten(Node *root)
+{
+    if(!root || root->next == NULL)return root;
+    Node* temp = root;
+    Node* ans = root;
+    Node* p = root;
+    Node* q = root;
+    
+    while(q->next){
+        
+     Node *k =  merge(p,q->next);
+     q=q->next;
+     p= k; 
+        
+    }
+    
+    return p;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Method 1
+/**
+ * 
+ Node *flatten(Node *root)
 {
    // Your code here
    vector<int>v;
-   
    while(root){
        
        Node *temp = root;
-       
        while(temp){
            v.push_back(temp->data);
            temp = temp->bottom;
        }
        root=root->next;
-  
    }
    
    sort(v.begin(),v.end());
-    
    Node* lol = new Node(0);
    Node* ans = lol;
    
    for(int i=0;i<v.size();i++){
-       
        lol->bottom = new Node(v[i]);
        lol = lol->bottom;
    }
-   
    return ans->bottom;
 
-   
 }
-
+**/
