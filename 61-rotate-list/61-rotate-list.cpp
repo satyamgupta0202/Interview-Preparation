@@ -14,16 +14,17 @@ public:
         
         if(head==NULL)return NULL;
       
-        int cnt = 0;
+        int cnt = 1;
         ListNode* temp = head;
         
-        while(temp){
+        while(temp->next){
             cnt++;
             temp = temp->next;    
         }
         
         k = k%cnt;
         if(k==0)return head;
+        
         int tar = cnt - k;
         cnt = 0;
         ListNode* prev = head ;
@@ -38,10 +39,10 @@ public:
         prev->next = NULL;
         ListNode* ans = curr;
         
-        while(curr->next!=NULL){
-            curr=curr->next;
-        }
-        curr->next = head;
+        // while(curr->next!=NULL){
+        //     curr=curr->next;
+        // }
+        temp->next = head;
         return ans;
     
     }
