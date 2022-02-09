@@ -15,16 +15,14 @@ public:
        if(head==NULL)return false;     //base case to be remenbered
         
        ListNode* slow = head;
-       ListNode* fast = head->next;
+       ListNode* fast = head;
         
     
-        while(slow && fast && slow != fast){
-            slow = slow->next;
-            if(fast->next==NULL)return false;    //note this too
+        while( fast &&  fast->next ){
+            slow = slow->next;    //note this too
             fast = fast->next->next;
+            if(slow==fast)return true;
         }
-        
-        if(slow!=NULL && slow==fast)return true;
         return false;
         
     }
