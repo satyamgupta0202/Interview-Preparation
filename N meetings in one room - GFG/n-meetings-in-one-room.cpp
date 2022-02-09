@@ -10,21 +10,21 @@ class Solution
     //be performed in a meeting room.
     int maxMeetings(int start[], int end[], int n)
     {
-        // Your code here
         vector<pair<int,int>>v;
         for(int i=0;i<n;i++){
             v.push_back({end[i],start[i]});
         }
         sort(v.begin(),v.end());
         int ans = 0;
-        int en = 0;
+        int en = 0 ;
         for(int i=0;i<n;i++){
-            if(v[i].second > en){
+            int start = v[i].second;
+            
+            if(start>en){
                 ans++;
                 en = v[i].first;
             }
         }
-        
         return ans;
     }
 };
