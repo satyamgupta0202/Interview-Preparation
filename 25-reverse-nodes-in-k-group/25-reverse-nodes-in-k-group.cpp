@@ -10,11 +10,63 @@
  */
 class Solution {
 public:
+    
+    void rev(ListNode *s , ListNode *end){
+        
+        ListNode* prev = NULL ;
+        ListNode* curr = s ;
+        ListNode* next = s->next;
+        
+        while(prev!=end){ 
+            
+            curr->next = prev;
+            prev = curr;
+            curr=next;
+            if(next)next = next->next;
+        }
+    }
+    
+    
+    
     ListNode* reverseKGroup(ListNode* head, int k) {
-        
-        
         //check
-        ListNode* temp = head;
+        
+        while(k==1 || head==NULL || head->next==NULL)return head;
+        
+        ListNode* dummy = new ListNode(0);
+        dummy->next=head;
+        
+        ListNode* start = dummy , *end = head;
+        int i=0;
+        
+        while(end!=NULL){
+            
+            i++;
+            if(i%k==0){
+                ListNode* temp = end->next,*s = start->next;
+                rev(s , end);
+                
+                start->next = end;
+                s->next = temp;
+                
+                start = s;
+                end = temp;  
+            }
+            else{
+                end=end->next;
+            }
+            
+        }
+         return dummy->next;  
+    }
+};
+
+
+
+
+
+/**
+ ListNode* temp = head;
         for(int i=0;i<k;i++){
             if(temp==NULL)return head;
             temp=temp->next;
@@ -34,20 +86,9 @@ public:
         
         if(next){
             head->next = reverseKGroup(curr,k);
-        }
-        
-        return prev;
-            
-        
-        
-        
-        
-        
-        
-    }
-};
-
-
+        }   
+        return prev;    
+**/
 
 
 //mathod 1 simple naive
