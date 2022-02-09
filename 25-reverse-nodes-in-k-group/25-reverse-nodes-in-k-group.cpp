@@ -11,18 +11,19 @@
 class Solution {
 public:
     
-    void rev(ListNode *s , ListNode *end){
+    void rev(ListNode *start , ListNode *end){
         
         ListNode* prev = NULL ;
-        ListNode* curr = s ;
-        ListNode* next = s->next;
+        ListNode* curr = start ;
+        ListNode* next = NULL;
         
         while(prev!=end){ 
             
+            next = curr->next;
             curr->next = prev;
             prev = curr;
             curr=next;
-            if(next)next = next->next;
+         
         }
     }
     
