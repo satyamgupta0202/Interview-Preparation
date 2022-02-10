@@ -1,6 +1,41 @@
 class Solution {
 public:
     vector<vector<int>>ans;
+    
+    void solve(vector<int>&a , int target , int indx , vector<int>&path){
+        
+        if(indx==a.size()){
+            if(target==0)ans.push_back(path);
+            
+            return;
+        }
+        
+        if(a[indx]<=target){
+            path.push_back(a[indx]);
+            solve(a,target-a[indx],indx,path);
+            path.pop_back();
+        }
+        
+         solve(a,target,indx+1,path);
+        
+    }
+    
+    vector<vector<int>> combinationSum(vector<int>& a, int target) {
+        
+        vector<int>path;
+        solve(a,target,0,path);
+        
+        return ans;
+        
+    }
+};
+
+
+
+/**
+class Solution {
+public:
+    vector<vector<int>>ans;
     set<vector<int>>s;
     void solve(vector<int>&a , int target , vector<int>&path , int indx,int sum){
         
@@ -45,3 +80,4 @@ public:
         return res;
     }
 };
+**/
