@@ -13,7 +13,7 @@ public:
         for(int i=indx;i<arr.size();i++){
             sum+=arr[i];
             path.push_back(arr[i]);
-            solve(arr,target,path,i,sum);
+            solve(arr,target,path,i,sum);   //multiple baar le skate isiliye i hi rakhe ,,, combination 2 +1
             path.pop_back();
             sum-=arr[i];
         }
