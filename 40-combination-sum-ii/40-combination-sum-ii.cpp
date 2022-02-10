@@ -1,32 +1,24 @@
 class Solution {
-public:
-    vector<vector<int>> result;
-    
-    void comsum(vector<int> &curr, int target, int sum, vector<int> &candidates, int curInd, int n){
-        if(target == sum){
-            result.push_back(curr);
+    public: 
+    void findCombination(int ind, int target, vector<int> &arr, vector<vector<int>> &ans, vector<int>&ds) {
+        if(target==0) {
+            ans.push_back(ds);
             return;
+        }        
+        for(int i = ind;i<arr.size();i++) {
+            if(i>ind && arr[i]==arr[i-1]) continue; 
+            if(arr[i]>target) break; 
+            ds.push_back(arr[i]);
+            findCombination(i+1, target - arr[i], arr, ans, ds); 
+            ds.pop_back(); 
         }
-        else if(sum>target){
-            return;
-        }
-        
-        for(int i = curInd; i < n; i++){
-            if(i != curInd && candidates[i]==candidates[i-1])               //to avoid picking up the same combnations i.e. we don't pick same element for certain kth position of a combination 
-                continue;
-            sum += candidates[i];
-            curr.push_back(candidates[i]);
-            comsum(curr, target, sum, candidates, i+1, n);
-            sum -= candidates[i];
-            curr.pop_back();
-        }
-        
     }
+public:
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-        vector<int> curr;
-        int n = candidates.size();
         sort(candidates.begin(), candidates.end());
-        comsum(curr, target, 0, candidates, 0, n);
-        return result;
+        vector<vector<int>> ans; 
+        vector<int> ds; 
+        findCombination(0, target, candidates, ans, ds); 
+        return ans; 
     }
 };
