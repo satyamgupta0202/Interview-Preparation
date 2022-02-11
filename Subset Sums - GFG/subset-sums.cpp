@@ -8,29 +8,26 @@ class Solution
 public:
     vector<int>ans;
     
-    void solve(vector<int>&arr , int n , int indx , int sum , vector<int>&path){
+    void solve(vector<int>&arr , int n , int indx , int sum){
         
         if (indx==n){
             ans.push_back(sum);
             return;
         }
-        
-        path.push_back(arr[indx]);
+
         sum+=arr[indx];
-        solve(arr,n,indx+1,sum,path);
-        path.pop_back();
+        solve(arr,n,indx+1,sum);
         sum-=arr[indx];
-        solve(arr,n,indx+1,sum,path);
+        solve(arr,n,indx+1,sum);
         
     }
     
     vector<int> subsetSums(vector<int> arr, int N)
     {
         // Write Your Code here
-        
-        vector<int>path;
+       
     
-        solve(arr,N,0,0,path);
+        solve(arr,N,0,0);
         
         return ans;
         
