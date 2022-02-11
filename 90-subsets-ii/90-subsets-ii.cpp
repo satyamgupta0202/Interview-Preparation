@@ -1,31 +1,30 @@
 class Solution {
 public:
-    vector<vector<int>> result;
+    vector<vector<int>>ans;
     
-    void subs(vector<int> &nums, int curr, vector<int> &res){
+    void solve(vector<int>& nums, int indx , vector<int>&path){
+      
+       
+        ans.push_back(path);
         
-        //if(curr==nums.size()){
-            result.push_back(res);
-         
+
         
-        
-        for(int i = curr; i < nums.size(); i++){
-            if(i!=curr && nums[i]==nums[i-1]){
+        for(int i=indx;i<nums.size();i++){
+            
+            if(i!=indx && nums[i]==nums[i-1]){
                 continue;
             }
-            res.push_back(nums[i]);
-            subs(nums, i+1, res);
-            res.pop_back();
             
+            path.push_back(nums[i]);
+            solve(nums,i+1,path);
+            path.pop_back();
         }
     }
+    
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        if(nums.size() == 0){
-            return result;
-        }
-        vector<int> res;
-        sort(nums.begin(), nums.end());
-        subs(nums, 0, res);
-        return result;
+        sort(nums.begin(),nums.end());
+        vector<int>path;
+        solve(nums,0,path);
+        return ans;
     }
 };
