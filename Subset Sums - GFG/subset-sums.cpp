@@ -6,37 +6,34 @@ using namespace std;
 class Solution
 {
 public:
+    vector<int>ans;
     
-    void solve(vector<int>arr , int indx , int n , vector<int>&ans,vector<int>&path) {
+    void solve(vector<int>&arr , int n , int indx , int sum , vector<int>&path){
         
-        if(indx==n){
-            int sum=0;
-            for(int i=0;i<path.size();i++){
-                sum+=path[i];
-            }
+        if (indx==n){
             ans.push_back(sum);
-            return ;
+            return;
         }
         
-        if(indx>=n)return ;
-        
         path.push_back(arr[indx]);
-        solve(arr,indx+1,n,ans,path);
+        sum+=arr[indx];
+        solve(arr,n,indx+1,sum,path);
         path.pop_back();
-        solve(arr,indx+1,n,ans,path);
+        sum-=arr[indx];
+        solve(arr,n,indx+1,sum,path);
         
     }
     
     vector<int> subsetSums(vector<int> arr, int N)
     {
         // Write Your Code here
-        vector<int>ans;
-        //ans.push_back(0);
-        int n = arr.size();
+        
         vector<int>path;
-        solve(arr,0,n,ans,path);
-        sort(ans.begin(),ans.end());
+    
+        solve(arr,N,0,0,path);
+        
         return ans;
+        
     }
 };
 
