@@ -5,9 +5,17 @@ public:
         
         if(indx == n){
             ans.push_back(path);
-            return ;
-            
+            return ;   
         }
+        
+//         for(int i=indx;i<n;i++){
+//            // if(i!=indx && v[i]==v[i-1])continue;
+            
+//             path.push_back(v[i]);
+//             solve(v,i+1,n,path,ans);
+//             path.pop_back();  
+//            // solve(v,i+1,n,path,ans);
+//         }
         
         path.push_back(v[indx]);
         solve(v,indx+1,n,path,ans);
