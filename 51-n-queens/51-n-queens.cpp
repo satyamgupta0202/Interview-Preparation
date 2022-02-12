@@ -1,59 +1,77 @@
 class Solution {
 public:
-    bool check(vector<string>&mat , int row , int col ,int n){
-
-   //upper left
-   int i=row , j=col;
-   while(i>=0 && j>=0){
-       if(mat[i][j]=='Q')return false;
-       i--;
-       j--;
-   }
-
-   i=row , j=col;
-   while( j>=0){
-       if(mat[i][j]=='Q')return false;
-       j--;
-   }
-
-   i=row , j=col;
-   while(i<n && j>=0){
-       if(mat[i][j]=='Q')return false;
-       i++;
-       j--;
-   }
- return true;
-
-}
-
-
-
-void solve(vector<string>&mat,int n , vector<vector<string>>&ans , int col){
-
-    if(col == n) {
-        ans.push_back(mat);
-        return;
-    }
-
-    for(int row = 0;row<n;row++){
-
-        if(check(mat,row,col,n)){
-            mat[row][col] = 'Q';
-            solve(mat,n,ans,col+1);
-            mat[row][col]='.' ;
+    
+    vector<vector<string>>ans;
+    
+    bool isValid(int i , int j , vector<string>&path , int n)
+    {
+        int row = i , col = j;
+        
+        while(col>=0)
+        {
+            if(path[row][col]=='Q')return false;
+            col--;
         }
+        
+        col = j;
+        row=i;
+        
+        while(col>=0 && row>=0)
+        {
+            if(path[row][col]=='Q')return false;
+            
+            row--;
+            col--;
+        }
+        
+        col =j;
+        row=i;
+        
+        while(col>=0 && row>=0 && row<n)
+        {
+            if(path[row][col]=='Q')return false;
+            
+            row++;
+            col--;
+        }
+        
+        return true;
+        
+        
     }
-
-
-}
+    
+    
+    
+    void solve(int n , vector<string>&path , int curr)
+    {
+        if(curr==n)
+        {
+            ans.push_back(path);
+            return;
+        }
+        
+        if(curr>n)return;
+        
+        for(int i=0;i<n;i++)
+        {
+            if(isValid(i,curr,path,n))
+            {
+                path[i][curr]='Q';
+                solve(n,path,curr+1);
+                path[i][curr]='.';
+            }
+        }
+        
+    }
+    
+    
     vector<vector<string>> solveNQueens(int n) {
-         vector<vector<string>>ans;
-    vector<string>mat(n);
-    string s(n,'.');
-    for(int i=0;i<n;i++){
-         mat[i]=s;
-    }
-    solve(mat,n,ans,0);
-    return ans;
+        
+        string s(n,'.');
+        vector<string>path(n,s);
+        
+        solve(n,path,0);
+    
+        return ans;
     }
 };
