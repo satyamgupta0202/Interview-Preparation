@@ -12,7 +12,7 @@ public:
         
         for(int i=ind;i<n;i++)
         {
-            if(i!=ind && nums[i]==nums[ind])continue;
+            if(i!=ind && nums[i]==nums[i-1])continue;
             
             path.push_back(nums[i]);
             swap(nums[i],nums[ind]);
