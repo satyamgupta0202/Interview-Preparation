@@ -32,8 +32,8 @@ class Solution{
     vector<string> findPath(vector<vector<int>> &m, int n) {
         // Your code goes here
         vector<vector<int>>visited(n,vector<int>(n));
-        if(m[0][0]==0) return {};
-        if(m[n-1][n-1]==0) return {};
+        //if(m[0][0]==0) return {};
+        //if(m[n-1][n-1]==0) return {};
         string str="";
         dfs(0,0,visited,str,m,n);
         sort(ans.begin(),ans.end());
