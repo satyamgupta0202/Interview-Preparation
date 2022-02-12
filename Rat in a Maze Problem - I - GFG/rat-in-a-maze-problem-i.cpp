@@ -8,34 +8,82 @@ using namespace std;
  // } Driver Code Ends
 // User function template for C++
 
-class Solution{
+
+    
+   class Solution{
     public:
     
-   vector<string>ans;
-    void dfs(int i,int j,vector<vector<int>>&visited,string str,vector<vector<int>>&m,int n)
+    vector<string>ans;
+    
+    bool check(int i,int j , vector<vector<int>> &m , vector<vector<int>>&vis )
     {
-        if(i<0||j<0||i>n-1||j>n-1||m[i][j]==0||visited[i][j]==1) return ;
+        if(i>=m.size() || j>=m.size() || i<0 ||j<0 || m[i][j]==0 || vis[i][j]==1)return false;
+        return true;
+    }
+    
+    void solve(vector<vector<int>> &m , int n ,string &path , vector<vector<int>>&vis , int i,int j )
+    {
         if(i==n-1 && j==n-1)
         {
-            ans.push_back(str);
-            str="";
-            return ;
+            //cout<<path;
+            ans.push_back(path);
+            return;
         }
-        visited[i][j]=1;
-        dfs(i-1,j,visited,str+"U",m,n);
-        dfs(i+1,j,visited,str+"D",m,n);
-        dfs(i,j+1,visited,str+"R",m,n);
-        dfs(i,j-1,visited,str+"L",m,n);
-        visited[i][j]=0;
+        
+        //if(!check(i,j,m,vis))return;
+        //left
+        vis[i][j]=1;
+        
+        if(check(i,j-1,m,vis))
+        {
+            path+="L";
+            vis[i][j-1]=1;
+            solve(m,n,path,vis,i,j-1);
+            vis[i][j-1]=-1;
+            path.pop_back();
+        }
+        //Right
+        if(check(i,j+1,m,vis))
+        {
+            path+="R";
+            vis[i][j+1]=1;
+            solve(m,n,path,vis,i,j+1);
+            vis[i][j+1]=-1;
+            path.pop_back();
+        }
+        //Down
+        if(check(i+1,j,m,vis))
+        {
+            path+="D";
+            vis[i+1][j]=1;
+            solve(m,n,path,vis,i+1,j);
+            vis[i+1][j]=-1;
+            path.pop_back();
+        }
+        //up
+        if(check(i-1,j,m,vis))
+        {
+            path+="U";
+            vis[i-1][j]=1;
+            solve(m,n,path,vis,i-1,j);
+            vis[i-1][j]=-1;
+            path.pop_back();
+        }
+        
+        vis[i][j]=-1;
+        
         
     }
+    
     vector<string> findPath(vector<vector<int>> &m, int n) {
         // Your code goes here
-        vector<vector<int>>visited(n,vector<int>(n));
-        string str="";
-        dfs(0,0,visited,str,m,n);
+        if(m[0][0]==0)return {};
+        string path="";
+        vector<vector<int>>vis(n,vector<int>(n+1,-1));
+        solve(m,n,path,vis,0,0);
         return ans;
     }
+
 };
 
     
