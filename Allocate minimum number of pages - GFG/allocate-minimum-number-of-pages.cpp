@@ -11,43 +11,53 @@ using namespace std;
 class Solution 
 {
     public:
-    bool isPossible(int arr[], int n, int m, int mid){
-        int studentCount = 1; 
-        int pageSum = 0;
-        for(int i=0; i<n; i++){
-            if(pageSum + arr[i] <= mid){
-                pageSum = pageSum + arr[i];
+    
+      int check(int nums[] , int target,int n){
+        
+        int possible=1;
+        int temp=0;
+        for(int i=0;i<n;i++){
+            
+            if(temp+nums[i]<=target){
+                temp=temp+nums[i];
             }else{
-                studentCount++;
-                if(studentCount > m || arr[i] > mid){
-                    return false;
-                }
-                pageSum = arr[i];
+                possible++;
+                temp=nums[i];
             }
         }
-        return true;
+        //cout<<possible<<endl;
+        return possible; 
+        
     }
-    int findPages(int A[], int N, int M) 
+    //Function to find minimum number of pages.
+    int findPages(int nums[], int n, int m) 
     {
-       int s = 0;
-       int sum = 0; 
-       int ans = -1;
-       for(int i=0; i<N; i++){
-           sum = sum+A[i];
-       }
-       int e = sum;
-       int mid = s + (e-s)/2;
-       while(s<=e){
-           if(isPossible(A, N, M, mid)){
-               ans = mid;
-               e = mid-1;
-           }
-           else{
-               s = mid+1;
-           }
-           mid = s + (e-s)/2;
-       }
-       return ans;
+        //code here
+       
+        int end=0,start=0;
+        for(int i=0;i<n;i++){
+            end+=nums[i];
+            start = max(start,nums[i]);
+        }
+        
+        int mid=0;
+        //calculated start,end
+        while(start< end){
+            
+            mid = start + (end-start)/2 ;
+            
+            int partition = check (nums,mid,n);
+            //cout<<partition;
+            
+            if(partition > m ){
+                start = mid+1;
+            }else{
+                end=mid;
+            }
+
+           
+        }
+      return end;  
     }
 };
 
