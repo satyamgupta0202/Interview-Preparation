@@ -42,7 +42,7 @@ class Solution
         
         int mid=0;
         //calculated start,end
-        while(start< end){
+        while(start<=end){
             
             mid = start + (end-start)/2 ;
             
@@ -52,12 +52,12 @@ class Solution
             if(partition > m ){
                 start = mid+1;
             }else{
-                end=mid;
+                end=mid-1;
             }
 
            
         }
-      return end;  
+      return end+1;  
     }
 };
 
