@@ -7,6 +7,10 @@ public:
         vector<int>l(n,0),r(n,0);
         
         //left
+        //ek barr hi equal wale count karengey
+        //concept : count total subarray where particular index value serves as minimim
+        // agr side wale (left,right) bigger hai tho hamara element god ho sakta uss subarray kae liye
+        
         
         for(int i=0;i<n;i++)
         {
