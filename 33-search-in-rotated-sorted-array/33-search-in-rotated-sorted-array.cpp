@@ -1,5 +1,47 @@
 class Solution {
 public:
+    int search(vector<int>& nums, int target) {
+        
+        
+        int low = 0 , high = nums.size()-1;
+        int n = nums.size();
+        while(low<=high)
+        {
+            int mid = low + (high-low)/2;
+            
+            if(nums[mid]==target)return mid;
+            
+            if(nums[mid]>=nums[low])
+            {
+                 if(target>=nums[low] && target<=nums[mid])
+                 {
+                     high=mid-1;
+                 }
+                else
+                {
+                    low=mid+1;
+                }
+            }
+            else
+            {
+                if(target>=nums[mid] && target<=nums[high])
+                {
+                    low=mid+1;
+                }
+                else
+                {
+                    high=mid-1;
+                }
+            }
+            
+        }
+        return -1;
+    }
+};
+
+/**
+class Solution {
+public:
     
     int solve(vector<int>&nums,int low , int high,int target)
     {
@@ -46,8 +88,6 @@ public:
                 high=mid-1;
             }
         }
-        
-        
         if(temp!=-1 && nums[temp]==target)return temp;
         
         low=0;
@@ -64,9 +104,6 @@ public:
         if(p!=-1)return p;
         if(q!=-1)return q;
         return -1;
-        
-        
-        
-        
     }
 };
+**/
