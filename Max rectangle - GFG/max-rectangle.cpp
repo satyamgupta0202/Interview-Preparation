@@ -79,10 +79,6 @@ class Solution{
             }
              int k = check(v,m);
              ans = max(ans ,k);
-            
-            //for(int k=0;k<m;k++)
-            // cout<<v[k]<<" ";
-            // cout<<endl;
         }
         return ans;
     }
