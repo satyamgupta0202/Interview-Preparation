@@ -14,7 +14,7 @@ public:
                 q.pop_front();
             }
             
-            while(!q.empty() && nums[q.back()]<nums[i])
+            while(!q.empty() && nums[q.back()]<=nums[i])
             {
                 q.pop_back();
             }
