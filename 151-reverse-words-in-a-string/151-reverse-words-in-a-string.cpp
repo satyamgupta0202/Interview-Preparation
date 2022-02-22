@@ -18,8 +18,6 @@ public:
             ans.append(temp);
         }
         reverse(ans.begin(),ans.end());
-        return ans;
-        
-        
+        return ans;  
     }
 };
