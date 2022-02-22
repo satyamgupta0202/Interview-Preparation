@@ -1,31 +1,56 @@
 class Solution {
 public:
     string longestPalindrome(string s) {
+      
+         int n = s.size();
+         vector<vector<bool>>dp(n,vector<bool>(n,false));
+         int l = 0;
+         int p=-1,q=-1;
+         int ans=0;
         
-        int n = s.size();
-        bool dp[n][n];
-        memset(dp,false,sizeof(dp));
-        int ans = 0;
-        
-        string k = "";
-        
-        for(int i=n-1;i>=0;i--){
-            
-            for(int j=n-1;j>=i && j<n ;j--){
-                
-                if(s[i]==s[j]){
-                    
-                    if(i==j || i+1==j || dp[i+1][j-1]){
+        for(int i=n-1;i>=0;i--)
+        {
+            for(int j=i;j<n;j++)
+            {
+                if(i==j)
+                {
+                    dp[i][j]=true;
+                }
+               else if(j-i==1 )
+                {
+                    if(s[i]==s[j])
+                    {
                         dp[i][j]=true;
-                        
-                        if(ans< j-i+1){
-                            ans = j-i+1;
-                            k = s.substr(i,j-i+1);
-                        }
-                    }     
-                } 
-            } 
+                    }
+                    else
+                    {
+                        dp[i][j]=false;
+                    }
+                }
+                else 
+                {
+                    if(s[j]==s[i] && dp[i+1][j-1])
+                    {
+                        dp[i][j]=true;
+                    }
+                    else
+                    {
+                        dp[i][j]=false;
+                    }
+                }
+                
+                if(dp[i][j])
+                {
+                    if(ans<=(j-i+1))
+                    {
+                        p=i;
+                        q=j;
+                        ans = j-i+1;
+                    }
+                }
+            }
         }
-        return k;   
+        return s.substr(p,q-p+1);
+        
     }
 };
