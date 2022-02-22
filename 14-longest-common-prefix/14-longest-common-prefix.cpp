@@ -18,7 +18,7 @@ public:
                 else ok = false;
             }
             
-            if(c==n-1 && ok){
+            if(  ok){
                 cout<<c<<endl;
                 ans.push_back(k);
             }else{
