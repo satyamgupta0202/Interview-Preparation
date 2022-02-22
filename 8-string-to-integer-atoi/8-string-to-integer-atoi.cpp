@@ -18,7 +18,7 @@ public:
         
         while(i<n)
         {
-            if(s[i]>='0' && s[i]<='9' && res<2147483648)
+            if(s[i]>='0' && s[i]<='9' && res<INT_MAX)
             {
                 res  = res*10 + (s[i]-'0');
                 i++;
@@ -28,8 +28,8 @@ public:
         }
         
         if(ok)res*=-1;
-        if(res<=-2147483648)return  -2147483648;
-        if(res>=2147483648)return  2147483647;
+        if(res<=INT_MIN)return  INT_MIN;
+        if(res>=INT_MAX)return  INT_MAX;
         return res;
     }
 };
