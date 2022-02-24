@@ -1,46 +1,80 @@
 class Solution {
 public:
-    int repeatedStringMatch(string A, string B) {
-        int a=A.size(),b=B.size();
-        vector<int>lps(b);
-       //Making LPS array using string 'B'
-	   lps[0]=0;
-        for(int j=0,i=1;i<b;)
-        {
-            if(B[i]==B[j])
-                lps[i++]=++j;
-            else if(j!=0)
-                j=lps[j-1];
-            else
-                lps[i++]=0;
-        }
+    
+    int p = 31;
+    long long mod = 1e9+7 ;
+    
+    vector<int> cal(string b)
+    {
+        int n = b.size();
+        vector<int>prefix(n,0);
+        //memset(prefix,0,sizeof(prefix));
         
-        //Search pattern 'B' in string 'A' in a circular fashion
-		//variable 'i' represents the starting index of pattern 'B' in string 'A' 
-		//variable 'j' points to the current index in both strings 'A' and 'B'
-		//(i+j)%a represents circular next index in 'A', as if it were linearly repeted
-        for(int i=0,j=0;i<a;)
+        for(int i=1;i<n;i++)
         {
-            if(B[j]==A[(i+j)%a])
-                ++j;//check for next in both
-            if(j==b)//returns suitable answer
+            int j = prefix[i-1];
+            
+            while(j>0 && b[i]!=b[j])
             {
-                if((i+j)%a)
-                    return (i+j)/a+1;
-                return (i+j)/a;
+                j = prefix[j-1];
             }
-            else if(i<a and B[j]!=A[(i+j)%a])
+            if(b[i]==b[j])
             {
-                if(j!=0)
-                {
-                    i+=(j-lps[j-1]);//updating 'i' here helps to keep pointed to the same position in 'A'
-                    j=lps[j-1];
-                }
-                else
-                    ++i;//even if no match found for the first letter of the pattern increment 'i'
+                j++;
+            }
+            prefix[i]=j;
+        }
+        return prefix;
+    }
+    
+    int solve(string a , string b)
+    {
+        vector<int>prefix = cal(b);
+        int i=0 , j=0;
+        
+        while(i<a.size())
+        {
+            if(a[i]==b[j])
+            {
+                i++;
+                j++;
+            }
+            else
+            {
+                if(j!=0)j=prefix[j-1];
+                else i++;
             }
             
+            if(j==b.size())return 1;
         }
-        return -1;//if not possible to represent as multiple of 'A' return '-1'
+        
+        return -1;
+    }
+    
+    
+    
+    
+    int repeatedStringMatch(string a, string b) {
+        
+        int cnt = 1;
+        string temp = a;
+        
+        
+        
+        while(a.size()<b.size())
+        {
+            a = a+temp;
+            cnt++;
+        }
+        
+        
+        
+      if(solve(a,b)!=-1)return cnt;
+            
+       a = a+temp;
+       if(solve(a,b)!=-1)return cnt+1;
+        
+       return -1;
+        
     }
 };
