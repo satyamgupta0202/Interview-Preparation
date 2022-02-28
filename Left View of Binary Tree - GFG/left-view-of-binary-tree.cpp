@@ -130,11 +130,12 @@ struct Node
 
 
 
+  
 vector<int> leftView(Node *root)
 {
    // Your code here
    vector<int>ans;
-    map<int,int>mp;
+   map<int,int>mp;
    if(root==NULL)return ans;
    queue<pair<Node*,int>>q;
    q.push({root,0});
