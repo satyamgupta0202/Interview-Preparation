@@ -34,10 +34,10 @@ public:
                  q.pop();
                  
                 if(curr->left){
-                    q.push({(long)2*w,curr->left});
+                    q.push({(long)2*w+1,curr->left});
                 }
                 if(curr->right){
-                    q.push({2*w+1,curr->right});
+                    q.push({2*w+2,curr->right});
                 }
                 
                 if(i==0){
@@ -52,7 +52,7 @@ public:
                 
                 
             }
-            ans = max(ans,q1+p+1);
+            ans = max(ans,q1-p+1);
             
         }
         
