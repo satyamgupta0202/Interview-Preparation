@@ -54,7 +54,11 @@ public:
             vector<int>v;
             
             for(auto lol : it.second){
-               v.insert(v.end(),lol.second.begin(),lol.second.end());  //lol.second-->set
+               // v.insert(v.end(),lol.second.begin(),lol.second.end());  //lol.second-->set
+                for(auto x:lol.second)
+                {
+                    v.push_back(x);
+                }
             }
             ans.push_back(v);
             
