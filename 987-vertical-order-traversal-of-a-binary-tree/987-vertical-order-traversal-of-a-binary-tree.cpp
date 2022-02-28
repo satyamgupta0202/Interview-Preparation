@@ -21,12 +21,16 @@ public:
         if(root==NULL)return ans;
         
         map<int,map<int,multiset<int>>>mp;
+        
         queue<pair<int,TreeNode*>>q;
+        
         q.push({0,root});
         int y=0;
+        
         while(!q.empty()) {
             
             int m = q.size();
+            
             while(m--){
                 
                 auto x = q.front().first;
@@ -41,6 +45,7 @@ public:
                     q.push({x+1,curr->right});
                 }
             }
+            
             y++;     
         }
         
