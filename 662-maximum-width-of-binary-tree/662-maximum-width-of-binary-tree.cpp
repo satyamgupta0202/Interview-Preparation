@@ -15,7 +15,7 @@ public:
         
         int ans=0;
         int p=-1,q1=-1;
-        queue<pair<int,TreeNode*>>q;
+        queue<pair<long,TreeNode*>>q;
         q.push({0,root});
         
         while(!q.empty()){
@@ -34,7 +34,7 @@ public:
                  q.pop();
                  
                 if(curr->left){
-                    q.push({2*w,curr->left});
+                    q.push({(long)2*w,curr->left});
                 }
                 if(curr->right){
                     q.push({2*w+1,curr->right});
@@ -43,6 +43,7 @@ public:
                 if(i==0){
                     
                     p=w;
+                    cout<<p<<endl;
                     
                 }
                   if(i==m-1){
