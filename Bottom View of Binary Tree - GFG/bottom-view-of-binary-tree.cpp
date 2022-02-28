@@ -107,7 +107,6 @@ class Solution {
         q.push({0,root});
         
         while(!q.empty()){
-            
             int m = q.size();
             while(m--){
                 auto x = q.front().first;
@@ -121,7 +120,6 @@ class Solution {
                     q.push({x+1,curr->right});
                 }
             }
-            
         }
        for(auto it: mp){
            ans.push_back(it.second);
