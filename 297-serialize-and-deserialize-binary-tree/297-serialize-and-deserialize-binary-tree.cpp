@@ -11,7 +11,8 @@ class Codec {
 public:
 
     // Encodes a tree to a single string.
-    string serialize(TreeNode* root) {
+    
+      string serialize(TreeNode* root) {
         
         queue<TreeNode*>q;
         string s = "";
@@ -74,7 +75,6 @@ public:
             
          }
         return root;
-        
     }
 };
 
