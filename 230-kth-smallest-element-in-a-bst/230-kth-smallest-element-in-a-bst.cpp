@@ -9,11 +9,16 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
 class Solution {
 public:
     int memo;
     int ans;
-    void inorder(TreeNode* root ){ 
+    
+    
+    
+    void inorder(TreeNode* root ){
+        
         if(root==NULL)return; 
         inorder(root->left);
         memo--;  
@@ -23,9 +28,16 @@ public:
         }
         inorder(root->right);        
     }
+    
+    
+    
     int kthSmallest(TreeNode* root, int k) {
         memo = k;
         inorder(root);
         return ans;
     }
+    
 };
+
+
+
