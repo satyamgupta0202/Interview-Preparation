@@ -11,42 +11,26 @@
  */
 class Solution {
 public:
-    
-    void preorder(TreeNode* root , vector<int>&v , int target) {
-        
-        if(root==NULL)return;
-        preorder(root->left,v,target);
-        v.push_back(root->val);
-        preorder(root->right,v,target);
+    void inorder(TreeNode* root) {
+        if (!root) return;
+        inorder(root->left);
+        vec.push_back(root->val);
+        inorder(root->right);
     }
     
     bool findTarget(TreeNode* root, int k) {
-        vector<int>v;
-        preorder(root,v,k);
-        if(v.size()<2)return false;
-        
-        for(int i=0;i<v.size();i++){
-            
-            int l = i+1;
-            int h = v.size()-1;
-            int res = k - v[i];
-            while(l<=h){
-                int mid = (l+h)/2;
-                if(res==v[mid])return true;
-                
-                else if(v[mid]>res){
-                    h=mid-1;
-                }
-                else{
-                    l=mid+1;
-                }
-                
+        inorder(root);
+        int l = 0, r = vec.size()-1;
+        while (l < r) {
+            if (vec[l] + vec[r] == k) return true;
+            else {
+                if (vec[l] + vec[r] < k) l++;
+                else r--;
             }
-            
-            
-            
         }
-        
         return false;
     }
+    
+private:
+    vector<int> vec;
 };
