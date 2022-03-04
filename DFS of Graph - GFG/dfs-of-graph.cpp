@@ -12,7 +12,6 @@ class Solution {
     {
         vis[node]=1;
         ans.push_back(node);
-        
         for(auto it: adj[node])
         {
             if(vis[it]==0)
@@ -20,20 +19,16 @@ class Solution {
                 dfs(it,adj,vis);
             }
         }
-        
     }
     
     
     vector<int> dfsOfGraph(int n, vector<int> adj[]) {
         // Code here
-        
         vector<int>vis(n,0);
-        dfs(0,adj,vis);
-        
+        for(int i=0;i<n;i++)
+        if(vis[i]==0)
+        dfs(i,adj,vis);
         return ans;
-        
-        
-        
     }
 };
 
