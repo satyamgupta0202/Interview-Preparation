@@ -1,11 +1,8 @@
 class Solution {
 public:
-    
-    
+
     bool check(int node , vector<int>adj[] , vector<int>&col , int par)
     {
-        
-        
         for(auto it : adj[node])
         {
             if(col[it]==-1)
@@ -13,9 +10,7 @@ public:
                 col[it]=1-col[node];
                 if(check(it,adj,col,node)==false)return false;
             }
-            else if(col[node]==col[it])return false;
-            
-            
+            else if(col[node]==col[it])return false;   
         }
         return true;
     }
