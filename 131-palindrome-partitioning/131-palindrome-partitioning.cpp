@@ -1,9 +1,6 @@
 class Solution {
 public:
-    
-    
-    
-    
+
     vector<vector<string>>ans;
     
     bool check(int i , int j , string s)
