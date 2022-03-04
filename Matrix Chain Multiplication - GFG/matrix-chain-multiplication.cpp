@@ -18,8 +18,11 @@ public:
     int solve(int arr[] , int i , int j,int n){
         
         int ans = INT_MAX;
+        
         if(i>=j)return 0;
         if(dp[i][j]!=-1)return dp[i][j];
+        
+        
         
         for(int k=i;k<=j-1;k++){
             
@@ -27,8 +30,6 @@ public:
          
           ans = min(ans,temp);
           dp[i][j] = ans;
-          
-            
         }
         
         return ans;
@@ -40,9 +41,8 @@ public:
     int matrixMultiplication(int N, int arr[]){
         // code here
         int ans = 0 ;
+        //pass from indx =1;
         return solve(arr,1,N-1,N);
-        
-        
     }
 };
 
