@@ -9,7 +9,7 @@ public:
         if(s1.size()==1)return false;
         
         
-        int n =s1.size();
+        int n = s1.size();
         
         string key = s1+s2;
         
