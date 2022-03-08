@@ -15,11 +15,7 @@ class Solution{
     vector <int> bellman_ford(int V, vector<vector<int>> adj, int S) {
         // Code here
         vector<int>ans;
-        vector<vector<int>>a[V];
         vector<int>dis(V,100000000);
-        
-        
-        
         dis[S]=0;
         for(int i=1;i<=V-1;i++)
         {
