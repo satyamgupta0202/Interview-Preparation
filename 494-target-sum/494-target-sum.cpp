@@ -1,28 +1,14 @@
 class Solution {
 public:
     
-    int cnt = 0;
-    
-    void solve(int target , int i , vector<int>&nums , long long k)
-    {
-        if(i==nums.size())
-        {
-            if(target==k)cnt++;
-            else return;
-        }
-        
-        if(i>=nums.size())return ;
-        
-        solve(target,i+1,nums,k-nums[i]);
-        solve(target,i+1,nums,k+nums[i]);
+     int findTargetSumWays(vector<int>& nums, int S) {
+        vector<unordered_map<int,int>> mem(nums.size());
+        return find(0,nums,S,mem);    
     }
-    
-    int findTargetSumWays(vector<int>& nums, int target) 
-    {
-        int n = nums.size();
-        long long k=0;
-        solve(target , 0 , nums ,k);
-        
-        return cnt;
+    int find(int p, vector<int>& nums, int sum, vector<unordered_map<int,int>>& mem) {
+        if(p==nums.size()) return sum==0;
+        auto it = mem[p].find(sum);
+        if(it != mem[p].end()) return it->second;
+        return mem[p][sum]=find(p+1,nums,sum+nums[p],mem)+find(p+1,nums,sum-nums[p],mem);
     }
 };
