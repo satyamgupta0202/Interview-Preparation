@@ -26,18 +26,14 @@ public:
                 }
             }
         }
-        
-        cout<<s<<endl;
- 
-        
+
+
       int ans = INT_MAX;
-	    for(int i=0;i<=n;i++){
-	        for(int j=0;j<=s/2;j++){
-	            if(dp[i][j]){
-	                ans = min (ans , s - 2*j);
-	            }
-	        }
-	    }
+	  for(int i=s/2;i>=0;i--)
+      {
+          if(dp[n][i])
+          ans = min(ans ,  s-2*i  );
+      }
         
         return ans;
         
