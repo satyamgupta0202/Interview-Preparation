@@ -1,59 +1,82 @@
 class Solution {
 public:
-    string shortestCommonSupersequence(string str1, string str2) {
-        
-        
-        int n1 = str1.size(),n2=str2.size();
+    
+    string solve(string s1 , string s2)
+    {
+        int n1 = s1.size();
+        int n2 = s2.size();
         int dp[n1+1][n2+1];
-        for(int i=0;i<=n1;i++){
-            for(int j=0;j<=n2;j++){
-                dp[i][j]=0;
-            }
-        }
+        memset(dp,0,sizeof(dp));
         
-        for(int i=1;i<=n1;i++){
-            for(int j=1;j<=n2;j++){
-                if(str1[i-1]==str2[j-1]){
-                    dp[i][j]=dp[i-1][j-1]+1;
-                }else{
-                    dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+        for(int i=1;i<=n1;i++)
+        {
+            for(int j=1;j<=n2;j++)
+            {
+                if(s1[i-1]==s2[j-1])
+                {
+                    dp[i][j]=1+dp[i-1][j-1];
+                }
+                else
+                {
+                    dp[i][j] = max(dp[i-1][j] ,dp[i][j-1]);
                 }
             }
         }
         
+        string temp ="";
         
-        int i=n1,j=n2;
-        string ans="";
-        while(i>0 && j>0){
+        int i=n1 , j=n2;
+        
+        while(i>0 && j>0)
+        {
             
-            if(str1[i-1]==str2[j-1]){
-                ans.push_back(str1[i-1]);
-                    i--;
+            if(s1[i-1]==s2[j-1])
+            {
+                temp.push_back(s1[i-1]);
+                i--;
+                j--;
+            }
+            else
+            {
+                if(dp[i][j-1]>dp[i-1][j])
+                {
+                    temp.push_back(s2[j-1]);
                     j--;
-            }else{
-                if(dp[i-1][j]>dp[i][j-1]){
-                    ans.push_back(str1[i-1]);
+                }
+                else
+                {
+                    temp.push_back(s1[i-1]);
                     i--;
-                }else{
-                    ans.push_back(str2[j-1]);
-                    j--;
-                }    
+                }
             }  
         }
         
-        while(i>0){
-            ans.push_back(str1[i-1]);
+        while(i)
+        {
+            temp.push_back(s1[i-1]);
             i--;
         }
-        while(j>0){
-            ans.push_back(str2[j-1]);
+        
+          while(j)
+        {
+            temp.push_back(s2[j-1]);
             j--;
         }
         
-        reverse(ans.begin(),ans.end());
         
-        return ans;
-        
+        cout<<temp<<endl; 
+        reverse(temp.begin(),temp.end());
+        return temp;
+    }
+    
+    string temp1 = "" , temp2 = "";
+    
+    
+    
+    
+    string shortestCommonSupersequence(string str1, string str2) 
+    {
+        return solve(str1,str2);
         
     }
 };
