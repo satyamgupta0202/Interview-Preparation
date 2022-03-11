@@ -6,6 +6,8 @@ public:
     {
         ans.push_back(path);
         
+        if(indx>=nums.size())return;
+        
         for(int i=indx;i<nums.size();i++)
         {
             
