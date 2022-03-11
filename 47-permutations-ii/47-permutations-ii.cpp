@@ -6,7 +6,6 @@ public:
         
         if(path.size()==n){
             st.insert(path);
-            ans.push_back(path);
             return;
         }
         
