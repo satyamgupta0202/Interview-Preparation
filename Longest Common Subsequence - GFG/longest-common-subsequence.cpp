@@ -10,12 +10,7 @@ class Solution
 {
     public:
     
-    //  int dp[x+1][y+1];
-     
-    // Solution(){
-    //     memset(dp , -1 , sizeof(dp));
-    //  }
-    //Function to find the length of longest common subsequence in two strings.
+  
     int lcs(int x, int y, string s1, string s2){
         // your code here
        
@@ -34,7 +29,6 @@ class Solution
                 }else{
                     dp[i][j] = max(dp[i-1][j] , dp[i][j-1]);
                 }
-                
             }
         }
         
