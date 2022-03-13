@@ -56,6 +56,7 @@ public:
              }else{
                  right = dp[k+1][j];
              }
+             
              ans = min(ans,left+right+1);
              dp[i][j]=ans;
              
