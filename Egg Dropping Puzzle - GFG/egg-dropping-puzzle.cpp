@@ -8,44 +8,44 @@ class Solution
     public:
     //Function to find minimum number of attempts needed in 
     //order to find the critical floor.
-   int dp[205][205];
-   Solution(){
-       memset(dp,-1,sizeof(dp));
-   }
-  int solve(int egg , int f) {
-      
-      int ans = INT_MAX;
-      if(egg==1){
-         return  dp[egg][f] = f;
-      }
-
-      
-      if(f==0 || f==1){
-          return dp[egg][f] =  f;
-      }
-      
-      if(dp[egg][f]!=-1)return dp[egg][f];
-      
-      
-      for(int k=1;k<=f;k++){
-          
-          int t1= solve(egg-1 , k-1);
-          int t2 = solve(egg , f-k);
-          
-          int t = 1 + max(t1,t2);
-          ans = min(ans,t);
-          dp[egg][f]= ans;
-      }
-      return ans;
-      
-      
-  }
+    int dp[300][300];
     
-    int eggDrop(int n, int k) {
-       
-       
-       return solve(n,k);
-       
+    Solution(){
+            memset(dp,-1,sizeof(dp));
+        };
+    
+    int solve(int e , int f) 
+    {
+        
+        
+        
+        if(e==1)return f;
+        
+        if(f==0 || f==1)return f;
+        
+        if(dp[e][f]!=-1)return dp[e][f];
+        
+        int ans = INT_MAX;
+        
+        for(int k=1;k<=f;k++)
+        {
+            int t1 = solve(e-1,k-1);
+            int t2 = solve(e,f-k);
+            
+            int temp = 1 + max(t1,t2);
+            
+            ans = min(ans,temp);
+        }
+        
+        return dp[e][f] =  ans;
+        
+    }
+    
+    int eggDrop(int n, int k) 
+    {
+        // your code here
+        return solve(n,k);
+        
     }
 };
 
