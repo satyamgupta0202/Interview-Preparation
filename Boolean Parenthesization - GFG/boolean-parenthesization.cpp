@@ -21,7 +21,10 @@ public:
                 return dp[i][j][istrue] =  (s[i]=='F');
             }
         }
+        
         if(dp[i][j][istrue]!=-1)return dp[i][j][istrue];
+        
+        
         int ans = 0;
         for(int k=i+1;k<=j-1;k=k+2){
             int lt = solve(s,i,k-1,true);
@@ -60,7 +63,6 @@ public:
     int countWays(int N, string S){
         // code here
         memset(dp,-1,sizeof(dp));
-        bool istrue = true;
         return solve(S,0,N-1,true);
     }
 };
