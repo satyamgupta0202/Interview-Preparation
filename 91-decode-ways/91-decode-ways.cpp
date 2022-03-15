@@ -5,11 +5,9 @@ public:
         int n = s.size();
         int dp[n+1];
         
-//         check for invalid string directly
+//       check for invalid string directly
         if(s[0]=='0')return 0;
-        
-        
-        
+
         for(int i=0;i<=n;i++)dp[i]=0;
         
         dp[0]=1;
