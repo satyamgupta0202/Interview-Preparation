@@ -20,7 +20,7 @@ public:
             ll nz = (z%mod+o%mod);
             ll no = z%mod;
             
-            z=nz;
+            z=nz%mod;
             o=no;
         }
         
