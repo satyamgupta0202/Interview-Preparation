@@ -9,7 +9,8 @@ using namespace std;
 class Solution{
 public:	
 	// calculate the maximum sum with out adjacent
-	int findMaxSum(int *arr, int n) {
+	int findMaxSum(int *arr, int n) 
+	{
 	    // code here
 	   int dp[n];
 	   for(int i=0;i<n;i++)dp[i]=0;
