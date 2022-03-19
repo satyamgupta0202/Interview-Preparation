@@ -3,32 +3,23 @@ public:
     int lengthOfLIS(vector<int>& nums) 
     {
         int n = nums.size();
+        int dp[n];
+        memset(dp,0,sizeof(dp));
         
-        int d[n+1];
-        for(int i=0;i<=n;i++)
-        {
-            d[i]=INT_MAX;
-        }
-        d[0]=INT_MIN;
+        dp[0]=1;
         
-        for(int i=0;i<n;i++)
+        for(int i=1;i<n;i++)
         {
-            auto it = upper_bound(d,d+n+1,nums[i]);
-            auto k = it;
-            k--;
-            if(*k != nums[i])
-            *it = nums[i];
-        }
-        
-        for(int i=n;i>0;i--)
-        {
-            if(d[i]!=INT_MAX)
+            dp[i]=1;
+            for(int j=0;j<i;j++)
             {
-                return i;
+                if(nums[i]>nums[j] && dp[j]+1>dp[i])
+                {
+                    dp[i]=dp[j]+1;
+                }
             }
         }
         
-        return -1;
-        
+        return *max_element(dp,dp+n);
     }
 };
