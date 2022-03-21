@@ -1,6 +1,6 @@
 class Solution {
 public:
-   int minimumMountainRemovals(vector<int>& nums) {
+    int minimumMountainRemovals(vector<int>& nums) {
     vector<int> dpleft(nums.size(), 1);
     vector<int> dpright(nums.size(), 1);
     for(int i=1; i<nums.size(); i++) {
@@ -29,4 +29,5 @@ public:
     }
     return nums.size()-longest;
 }
+
 };
