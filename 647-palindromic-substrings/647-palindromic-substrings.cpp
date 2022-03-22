@@ -14,7 +14,6 @@ public:
                             cnt++;
                         }
                     }
-              // if(dp[i][j])cnt++; 
             }
         }
         return cnt;
