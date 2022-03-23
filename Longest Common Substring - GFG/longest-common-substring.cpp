@@ -6,32 +6,37 @@ using namespace std;
 class Solution{
     public:
     
-    int lcs(string a , string b){
+    int lcs(string s1 , string s2 ,  int n ,int m)
+    {
         
-        int n = a.size(),m=b.size();
         int dp[n+1][m+1];
-        
+        int ans = 0;
         memset(dp,0,sizeof(dp));
-        int ans=0;
-        for(int i=1;i<=n;i++){
-            for(int j=1;j<=m;j++){
-                if(a[i-1]==b[j-1]){
-                    dp[i][j]=1+dp[i-1][j-1];
-                    ans=max(ans,dp[i][j]);
-                }else{
-                    dp[i][j]=0;
-                }
-            }
-        }
-        return ans;
         
+      // for(int i=0;i<=n;i++)dp[i][0]=1;
+       
+       for(int i=1;i<=n;i++)
+       {
+           for(int j=1;j<=m;j++)
+           {
+               if(s1[i-1] !=s2[j-1])
+               {
+                   dp[i][j]=0;
+               }
+               else
+               {
+                   dp[i][j] =max(dp[i-1][j-1]+1 , dp[i][j]);
+                   ans = max(ans,dp[i][j]);
+               }
+           }
+       }
+       return ans;
     }
     
-    
-    int longestCommonSubstr (string S1, string S2, int n, int m)
+    int longestCommonSubstr (string s1, string s2, int n, int m)
     {
         // your code here
-       return lcs(S1,S2);
+        return lcs(s1,s2,n,m);
     }
 };
 
