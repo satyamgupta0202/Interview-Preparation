@@ -6,12 +6,12 @@ public:
         int n1 = s1.size();
         int n2 = s2.size();
         int dp[n1+1][n2+1];
-       // memset(dp,0,sizeof(dp));
+     
+        //base condition
         for(int i=0;i<=n2;i++)
         {
             dp[0][i]=i;
         }
-        
         for(int i=0;i<=n1;i++)
         {
             dp[i][0] = i;
