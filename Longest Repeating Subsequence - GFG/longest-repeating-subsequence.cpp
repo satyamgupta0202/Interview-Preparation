@@ -11,12 +11,7 @@ class Solution {
 	        int n = s1.size();
 	        int dp[n+1][n+1];
 	        int ans = 0;
-	        for(int i=0;i<=n;i++){
-	            for(int j=0;j<=n;j++){
-	                if(i==0 || j==0)
-	                dp[i][j]=0;
-	            }
-	        }
+	        memset(dp,0,sizeof(dp));
 	        
 	        for(int i=1;i<=n;i++){
 	            for(int j=1;j<=n;j++){
@@ -36,8 +31,8 @@ class Solution {
 		int LongestRepeatingSubsequence(string str){
 		    // Code here
 		    string s1 = str;
-		   // reverse(str.begin(),str.end());
-		    string s2 = str;
+		  //  reverse(str.begin(),str.end());
+		  //  string s2 = str;
 		    int k = LCS(s1,s1);
 		    return k;
 		}
