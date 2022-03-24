@@ -34,7 +34,7 @@ public:
             sum+=el;
         }
         
-       int s1 = kadane(arr,1);
+         int s1 = kadane(arr,1);
         if(k==1){
             return (int)s1%mod;
         }
