@@ -12,12 +12,10 @@ class Solution
     
     Solution(){
             memset(dp,-1,sizeof(dp));
-        };
+           };
     
     int solve(int e , int f) 
     {
-        
-        
         
         if(e==1)return f;
         
