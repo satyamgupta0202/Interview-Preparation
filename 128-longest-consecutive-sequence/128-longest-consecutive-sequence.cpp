@@ -12,14 +12,13 @@ public:
               
               cnt = 0;
              
-              while(s.count(n)!=0){
+              while(s.count(n)!=0)
+              {
                   n++;
                   cnt++;
               }
               ans = max(ans,cnt);
-              
           }
-         
      }
         return ans;
         
