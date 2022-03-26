@@ -1,13 +1,10 @@
 class Solution {
 public:
-    int lengthOfLongestSubstring(string s) {
-        
+    int lengthOfLongestSubstring(string s) { 
         unordered_map<char,int>mp;
         int n = s.size();
         int i=0 , j=0;
         int ans = 0 ,cnt = 0;
-        
-        
         while(j<n){
             
             mp[s[j]]++;
