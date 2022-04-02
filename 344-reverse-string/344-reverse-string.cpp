@@ -1,13 +1,18 @@
 class Solution {
 public:
-    void reverseString(vector<char>& s) 
+    
+    void solve(vector<char>&s , int i , int j )
     {
-        int n = s.size();
+        if(i>=j)return ;
         
-        for(int i=0;i<n/2;i++)
-        {
-            swap(s[i] , s[n-i-1]);
-        }
+        swap(s[i],s[j]);
+        solve(s,i+1,j-1);
         
+    }
+    
+    void reverseString(vector<char>& s)
+    {
+        int n = s.size()-1;
+        solve(s,0,n);    
     }
 };
