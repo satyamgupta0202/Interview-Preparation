@@ -20,8 +20,8 @@ public:
         
             for(auto &val : c)
             {
-                long long x = val;
-                p += x/mid;
+                // long long x = val;
+                p += 1LL*val/mid;
             }
             
             
