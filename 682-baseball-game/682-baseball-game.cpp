@@ -24,8 +24,6 @@ public:
                 int a = st.top(); st.pop();
                 st.push(a);
                 st.push(b);
-                cout<<a<<" "<<b<<"-- "<<endl;
-                cout<<a+b<<endl;
                 st.push(a+b);
             }
             else
