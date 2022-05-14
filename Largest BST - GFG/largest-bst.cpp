@@ -99,39 +99,45 @@ struct Node {
     }
 };*/
 
-#define val data
 class Solution{
     public:
-
-    vector<int> postorder(Node* root) {
-        
-        if(root==NULL){
-            // a[0]=INT_MAX; //min
-            // a[1]=INT_MIN; //max
-            // a[2]=0;
-            return {INT_MAX,INT_MIN,0};
+    
+    vector<int> solve(Node* root)
+    {
+        if(root == NULL)
+        {    
+                    // ok , size , min , max
+            return {1,0,INT_MAX , INT_MIN};
         }
         
-       auto left =   postorder(root->left );
-       auto right =  postorder(root->right);
-        
-        if(left[1] < root->val && right[0]>root->val){
-            return {min(root->val , left[0]) , max(root->val,right[1]), left[2]+right[2]+1};
-        }
-        else{
-            return {INT_MIN,INT_MAX, max(left[2],right[2])};
+        if(root->left == NULL and root->right==NULL)
+        {
+            return {1,1,root->data , root->data};
         }
         
+        auto l = solve(root->left);
+        auto r = solve(root->right);
+        
+        if(l[0] && r[0])
+        {
+            if(root->data > l[3] && root->data < r[2])
+            {
+                int x = l[2];
+                int y = r[3];
+                
+                if(x==INT_MAX)x=root->data;
+                if(y==INT_MIN)y=root->data;
+                
+                return {1,l[1]+r[1]+1,x,y};
+            }
+        }
+        return {0,max(l[1],r[1]),INT_MIN , INT_MAX};
     }
-
-
-    int largestBst(Node *root){
-       int size = 1;
-       
-      vector<int>ans= postorder(root);
-      return ans[2];
-       
-       
+  
+    int largestBst(Node *root)
+    {
+        vector<int>ans = solve(root);
+        return ans[1];
     }
 };
 
